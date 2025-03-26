@@ -1,0 +1,427 @@
+openapi: 3.0.0
+info:
+  title: delay-echo
+  version: 0.0.1
+paths:
+  /v0.0.1/delay-echo-5:
+    get:
+      requestBody:
+        description: Request payload
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                echo:
+                  type: string
+                time:
+                  type: integer
+                  format: int32
+                  minimum: 0
+              required:
+              - echo
+              - time
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    oneOf:
+                    - type: object
+                      properties:
+                        ok:
+                          type: string
+                      required:
+                      - ok
+                    - type: object
+                      properties:
+                        err:
+                          type: string
+                      required:
+                      - err
+                  status:
+                    type: integer
+                    format: int64
+                    minimum: 0
+                required:
+                - body
+                - status
+      x-golem-api-gateway-binding:
+        binding-type: default
+        component-name: delay-echo
+        component-version: 0
+        response: |-
+          let result = golem:delayecho/api.{echo}(request.body.echo, request.body.time);
+          {status: 200u64, body: result}
+        worker-name: '"worker-zero"'
+  /v0.0.1/{user}/delay-echo:
+    get:
+      parameters:
+      - in: path
+        name: user
+        description: 'Path parameter: user'
+        required: true
+        schema:
+          type: string
+        explode: false
+        style: simple
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    oneOf:
+                    - type: object
+                      properties:
+                        ok:
+                          type: string
+                      required:
+                      - ok
+                    - type: object
+                      properties:
+                        err:
+                          type: string
+                      required:
+                      - err
+                  status:
+                    type: integer
+                    format: int64
+                    minimum: 0
+                required:
+                - body
+                - status
+      x-golem-api-gateway-binding:
+        binding-type: default
+        component-name: delay-echo
+        component-version: 0
+        response: |-
+          let result = golem:delayecho/api.{echo}("Test", 3);
+          {status: 200u64, body: result}
+        worker-name: |-
+          let user: string = request.path.user;
+          "worker-${user}"
+  /v0.0.1/{user}/delay-echo-2:
+    get:
+      parameters:
+      - in: path
+        name: user
+        description: 'Path parameter: user'
+        required: true
+        schema:
+          type: string
+        explode: false
+        style: simple
+      requestBody:
+        description: Request payload
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                echo:
+                  type: string
+                time:
+                  type: integer
+                  format: int32
+                  minimum: 0
+              required:
+              - echo
+              - time
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    oneOf:
+                    - type: object
+                      properties:
+                        ok:
+                          type: string
+                      required:
+                      - ok
+                    - type: object
+                      properties:
+                        err:
+                          type: string
+                      required:
+                      - err
+                  status:
+                    type: integer
+                    format: int64
+                    minimum: 0
+                required:
+                - body
+                - status
+      x-golem-api-gateway-binding:
+        binding-type: default
+        component-name: delay-echo
+        component-version: 0
+        response: |-
+          let result = golem:delayecho/api.{echo}(request.body.echo, request.body.time);
+          {status: 200u64, body: result}
+        worker-name: |-
+          let user: string = request.path.user;
+          "worker-${user}"
+  /v0.0.1/{user}/{time}/delay-echo-3:
+    get:
+      parameters:
+      - in: path
+        name: user
+        description: 'Path parameter: user'
+        required: true
+        schema:
+          type: string
+        explode: false
+        style: simple
+      - in: path
+        name: time
+        description: 'Path parameter: time'
+        required: true
+        schema:
+          type: string
+        explode: false
+        style: simple
+      requestBody:
+        description: Request payload
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    oneOf:
+                    - type: object
+                      properties:
+                        ok:
+                          type: string
+                      required:
+                      - ok
+                    - type: object
+                      properties:
+                        err:
+                          type: string
+                      required:
+                      - err
+                  status:
+                    type: integer
+                    format: int64
+                    minimum: 0
+                required:
+                - body
+                - status
+      x-golem-api-gateway-binding:
+        binding-type: default
+        component-name: delay-echo
+        component-version: 0
+        response: |-
+          let user: string = request.path.user;
+          let time: u32 = request.path.time;
+          let result = golem:delayecho/api.{echo}("worker-${user}", time);
+          {status: 200u64, body: result}
+        worker-name: |-
+          let user: string = request.path.user;
+          "worker-${user}"
+  /v0.0.1/{user}/{time}/delay-echo-4:
+    get:
+      parameters:
+      - in: path
+        name: user
+        description: 'Path parameter: user'
+        required: true
+        schema:
+          type: string
+        explode: false
+        style: simple
+      - in: path
+        name: time
+        description: 'Path parameter: time'
+        required: true
+        schema:
+          type: string
+        explode: false
+        style: simple
+      requestBody:
+        description: Request payload
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    oneOf:
+                    - type: object
+                      properties:
+                        ok:
+                          type: string
+                      required:
+                      - ok
+                    - type: object
+                      properties:
+                        err:
+                          type: string
+                      required:
+                      - err
+                  status:
+                    type: integer
+                    format: int64
+                    minimum: 0
+                required:
+                - body
+                - status
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    oneOf:
+                    - type: object
+                      properties:
+                        ok:
+                          type: string
+                      required:
+                      - ok
+                    - type: object
+                      properties:
+                        err:
+                          type: string
+                      required:
+                      - err
+                  status:
+                    type: integer
+                    format: int64
+                    minimum: 0
+                required:
+                - body
+                - status
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    oneOf:
+                    - type: object
+                      properties:
+                        ok:
+                          type: string
+                      required:
+                      - ok
+                    - type: object
+                      properties:
+                        err:
+                          type: string
+                      required:
+                      - err
+                  status:
+                    type: integer
+                    format: int64
+                    minimum: 0
+                required:
+                - body
+                - status
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    oneOf:
+                    - type: object
+                      properties:
+                        ok:
+                          type: string
+                      required:
+                      - ok
+                    - type: object
+                      properties:
+                        err:
+                          type: string
+                      required:
+                      - err
+                  status:
+                    type: integer
+                    format: int64
+                    minimum: 0
+                required:
+                - body
+                - status
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    oneOf:
+                    - type: object
+                      properties:
+                        ok:
+                          type: string
+                      required:
+                      - ok
+                    - type: object
+                      properties:
+                        err:
+                          type: string
+                      required:
+                      - err
+                  status:
+                    type: integer
+                    format: int64
+                    minimum: 0
+                required:
+                - body
+                - status
+      x-golem-api-gateway-binding:
+        binding-type: default
+        component-name: delay-echo
+        component-version: 0
+        response: |-
+          let time: u32 = request.path.time;
+          let user: string = if time > 3u32 then "higher" else "lower";
+          let result = golem:delayecho/api.{echo}(user, time);
+          {status: 200u64, body: result}
+        worker-name: |-
+          let user: string = request.path.user;
+          "worker-${user}"
+components: {}
+x-golem-api-definition-id: delay-echo
+x-golem-api-definition-version: 0.0.1

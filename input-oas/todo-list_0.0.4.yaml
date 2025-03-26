@@ -1,0 +1,168 @@
+openapi: 3.0.0
+info:
+  title: todo-list
+  version: 0.0.4
+paths:
+  /v0.0.1/swagger:
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      x-golem-api-gateway-binding:
+        binding-type: swagger-ui
+  /v0.0.1/{user}/add:
+    post:
+      parameters:
+      - in: path
+        name: user
+        description: 'Path parameter: user'
+        required: true
+        schema:
+          type: string
+        explode: false
+        style: simple
+      requestBody:
+        description: Request payload
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                input:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                    priority:
+                      type: string
+                      enum:
+                      - low
+                      - medium
+                      - high
+                    deadline:
+                      nullable: true
+                      type: string
+                  required:
+                  - title
+                  - priority
+                  - deadline
+              required:
+              - input
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    ok:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        title:
+                          type: string
+                        priority:
+                          type: string
+                          enum:
+                          - low
+                          - medium
+                          - high
+                        status:
+                          type: string
+                          enum:
+                          - backlog
+                          - in-progress
+                          - done
+                        created-timestamp:
+                          type: integer
+                          format: int64
+                        updated-timestamp:
+                          type: integer
+                          format: int64
+                        deadline:
+                          nullable: true
+                          type: integer
+                          format: int64
+                      required:
+                      - id
+                      - title
+                      - priority
+                      - status
+                      - created-timestamp
+                      - updated-timestamp
+                      - deadline
+                  required:
+                  - ok
+                - type: object
+                  properties:
+                    err:
+                      type: string
+                  required:
+                  - err
+      x-golem-api-gateway-binding:
+        binding-type: default
+        component-name: todo-list
+        component-version: 0
+        response: |-
+          let input = request.body.input;
+          let result = golem:todolist/api.{add}(input);
+          {status: 200u64, body: result}
+        worker-name: |-
+          let user: string = request.path.user;
+          "${user}"
+    options:
+      parameters:
+      - in: path
+        name: user
+        description: 'Path parameter: user'
+        required: true
+        schema:
+          type: string
+        explode: false
+        style: simple
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      x-golem-api-gateway-binding:
+        binding-type: cors-preflight
+        response: |-
+          {
+            Access-Control-Allow-Headers: "Content-Type, Authorization",
+            Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS",
+            Access-Control-Allow-Origin: "*"
+          }
+  /v0.0.1/{user}/swagger:
+    get:
+      parameters:
+      - in: path
+        name: user
+        description: 'Path parameter: user'
+        required: true
+        schema:
+          type: string
+        explode: false
+        style: simple
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      x-golem-api-gateway-binding:
+        binding-type: swagger-ui
+components: {}
+x-golem-api-definition-id: todo-list
+x-golem-api-definition-version: 0.0.4

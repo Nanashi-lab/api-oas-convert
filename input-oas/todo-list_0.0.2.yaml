@@ -1,0 +1,389 @@
+openapi: 3.0.0
+info:
+  title: todo-list
+  version: 0.0.2
+paths:
+  /v0.0.2/{user}/add-2:
+    get:
+      parameters:
+      - in: path
+        name: user
+        description: 'Path parameter: user'
+        required: true
+        schema:
+          type: string
+        explode: false
+        style: simple
+      requestBody:
+        description: Request payload
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                deadline:
+                  nullable: true
+                  type: string
+                priority:
+                  type: string
+                title:
+                  type: string
+              required:
+              - deadline
+              - priority
+              - title
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    type: string
+                  status:
+                    type: integer
+                    format: int64
+                    minimum: 0
+                required:
+                - body
+                - status
+      x-golem-api-gateway-binding:
+        binding-type: default
+        component-name: todo-list
+        component-version: 0
+        response: |-
+          let title: string = request.body.title;
+          let priority: string = request.body.priority;
+          let deadline: option<string> = request.body.deadline;
+          let result = golem:todolist/api.{add}({title: title, priority: high, deadline: none});
+          {status: 200u64, body: "Success"}
+        worker-name: |-
+          let user: string = request.path.user;
+          "${user}"
+  /v0.0.2/{user}/add-3:
+    get:
+      parameters:
+      - in: path
+        name: user
+        description: 'Path parameter: user'
+        required: true
+        schema:
+          type: string
+        explode: false
+        style: simple
+      requestBody:
+        description: Request payload
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                deadline:
+                  nullable: true
+                  type: string
+                priority:
+                  type: string
+                title:
+                  type: string
+              required:
+              - deadline
+              - priority
+              - title
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    oneOf:
+                    - type: object
+                      properties:
+                        ok:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            title:
+                              type: string
+                            priority:
+                              type: string
+                              enum:
+                              - low
+                              - medium
+                              - high
+                            status:
+                              type: string
+                              enum:
+                              - backlog
+                              - in-progress
+                              - done
+                            created-timestamp:
+                              type: integer
+                              format: int64
+                            updated-timestamp:
+                              type: integer
+                              format: int64
+                            deadline:
+                              nullable: true
+                              type: integer
+                              format: int64
+                          required:
+                          - id
+                          - title
+                          - priority
+                          - status
+                          - created-timestamp
+                          - updated-timestamp
+                          - deadline
+                      required:
+                      - ok
+                    - type: object
+                      properties:
+                        err:
+                          type: string
+                      required:
+                      - err
+                  status:
+                    type: integer
+                    format: int64
+                    minimum: 0
+                required:
+                - body
+                - status
+      x-golem-api-gateway-binding:
+        binding-type: default
+        component-name: todo-list
+        component-version: 0
+        response: |-
+          let title: string = request.body.title;
+          let priority: string = request.body.priority;
+          let deadline: option<string> = request.body.deadline;
+          let input = {title: title, priority: high, deadline: none};
+          let result = golem:todolist/api.{add}(input);
+          {status: 200u64, body: result}
+        worker-name: |-
+          let user: string = request.path.user;
+          "${user}"
+  /v0.0.2/{user}/delete-done-items-2:
+    get:
+      parameters:
+      - in: path
+        name: user
+        description: 'Path parameter: user'
+        required: true
+        schema:
+          type: string
+        explode: false
+        style: simple
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    type: string
+                  headers:
+                    type: object
+                    properties:
+                      ContentType:
+                        type: string
+                      userid:
+                        type: string
+                    required:
+                    - ContentType
+                    - userid
+                  status:
+                    type: integer
+                    format: int64
+                    minimum: 0
+                required:
+                - body
+                - headers
+                - status
+      x-golem-api-gateway-binding:
+        binding-type: default
+        component-name: todo-list
+        component-version: 0
+        response: |-
+          let result = golem:todolist/api.{delete-done-items}();
+          let status: u64 = 200;
+          let headers = {ContentType: "json", userid: "foo"};
+          let body = "foo";
+          {headers: headers, body: body, status: status}
+        worker-name: |-
+          let user: string = request.path.user;
+          "${user}"
+  /v0.0.2/{user}/update-2:
+    get:
+      parameters:
+      - in: path
+        name: user
+        description: 'Path parameter: user'
+        required: true
+        schema:
+          type: string
+        explode: false
+        style: simple
+      requestBody:
+        description: Request payload
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                deadline:
+                  nullable: true
+                  type: string
+                id:
+                  type: string
+                title:
+                  nullable: true
+                  type: string
+              required:
+              - deadline
+              - id
+              - title
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    type: string
+                  status:
+                    type: integer
+                    format: int64
+                    minimum: 0
+                required:
+                - body
+                - status
+      x-golem-api-gateway-binding:
+        binding-type: default
+        component-name: todo-list
+        component-version: 0
+        response: |-
+          let title: option<string> = request.body.title;
+          let deadline: option<string> = request.body.deadline;
+          let id: string = request.body.id;
+          let result = golem:todolist/api.{update}(id, {title: none, priority: none, deadline: none, status: none});
+          {status: 200u64, body: "Success"}
+        worker-name: |-
+          let user: string = request.path.user;
+          "${user}"
+  /v0.0.2/{user}/{id}/get-2:
+    get:
+      parameters:
+      - in: path
+        name: user
+        description: 'Path parameter: user'
+        required: true
+        schema:
+          type: string
+        explode: false
+        style: simple
+      - in: path
+        name: id
+        description: 'Path parameter: id'
+        required: true
+        schema:
+          type: string
+        explode: false
+        style: simple
+      requestBody:
+        description: Request payload
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    oneOf:
+                    - type: object
+                      properties:
+                        ok:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            title:
+                              type: string
+                            priority:
+                              type: string
+                              enum:
+                              - low
+                              - medium
+                              - high
+                            status:
+                              type: string
+                              enum:
+                              - backlog
+                              - in-progress
+                              - done
+                            created-timestamp:
+                              type: integer
+                              format: int64
+                            updated-timestamp:
+                              type: integer
+                              format: int64
+                            deadline:
+                              nullable: true
+                              type: integer
+                              format: int64
+                          required:
+                          - id
+                          - title
+                          - priority
+                          - status
+                          - created-timestamp
+                          - updated-timestamp
+                          - deadline
+                      required:
+                      - ok
+                    - type: object
+                      properties:
+                        err:
+                          type: string
+                      required:
+                      - err
+                  status:
+                    type: integer
+                    format: int64
+                    minimum: 0
+                required:
+                - body
+                - status
+      x-golem-api-gateway-binding:
+        binding-type: default
+        component-name: todo-list
+        component-version: 0
+        response: |-
+          let id: string = request.path.id;
+          let result = golem:todolist/api.{get}(id);
+          {status: 200u64, body: result}
+        worker-name: |-
+          let user: string = request.path.user;
+          "${user}"
+components: {}
+x-golem-api-definition-id: todo-list
+x-golem-api-definition-version: 0.0.2
