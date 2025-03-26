@@ -3,8 +3,19 @@ info:
   title: delay-echo
   version: 0.0.1
 paths:
+  /v0.0.1/swagger-delay:
+    post:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      x-golem-api-gateway-binding:
+        binding-type: swagger-ui
   /v0.0.1/delay-echo-5:
-    get:
+    post:
       requestBody:
         description: Request payload
         content:
@@ -59,8 +70,24 @@ paths:
           let result = golem:delayecho/api.{echo}(request.body.echo, request.body.time);
           {status: 200u64, body: result}
         worker-name: '"worker-zero"'
+    options:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      x-golem-api-gateway-binding:
+        binding-type: cors-preflight
+        response: |-
+          {
+            Access-Control-Allow-Headers: "Content-Type, Authorization",
+            Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS",
+            Access-Control-Allow-Origin: "*"
+          }
   /v0.0.1/{user}/delay-echo:
-    get:
+    post:
       parameters:
       - in: path
         name: user
@@ -109,8 +136,24 @@ paths:
         worker-name: |-
           let user: string = request.path.user;
           "worker-${user}"
+    options:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      x-golem-api-gateway-binding:
+        binding-type: cors-preflight
+        response: |-
+          {
+            Access-Control-Allow-Headers: "Content-Type, Authorization",
+            Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS",
+            Access-Control-Allow-Origin: "*"
+          }
   /v0.0.1/{user}/delay-echo-2:
-    get:
+    post:
       parameters:
       - in: path
         name: user
@@ -176,8 +219,24 @@ paths:
         worker-name: |-
           let user: string = request.path.user;
           "worker-${user}"
+    options:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      x-golem-api-gateway-binding:
+        binding-type: cors-preflight
+        response: |-
+          {
+            Access-Control-Allow-Headers: "Content-Type, Authorization",
+            Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS",
+            Access-Control-Allow-Origin: "*"
+          }
   /v0.0.1/{user}/{time}/delay-echo-3:
-    get:
+    post:
       parameters:
       - in: path
         name: user
@@ -242,8 +301,24 @@ paths:
         worker-name: |-
           let user: string = request.path.user;
           "worker-${user}"
+    options:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      x-golem-api-gateway-binding:
+        binding-type: cors-preflight
+        response: |-
+          {
+            Access-Control-Allow-Headers: "Content-Type, Authorization",
+            Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS",
+            Access-Control-Allow-Origin: "*"
+          }
   /v0.0.1/{user}/{time}/delay-echo-4:
-    get:
+    post:
       parameters:
       - in: path
         name: user
@@ -422,6 +497,22 @@ paths:
         worker-name: |-
           let user: string = request.path.user;
           "worker-${user}"
+    options:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      x-golem-api-gateway-binding:
+        binding-type: cors-preflight
+        response: |-
+          {
+            Access-Control-Allow-Headers: "Content-Type, Authorization",
+            Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS",
+            Access-Control-Allow-Origin: "*"
+          }
 components: {}
 x-golem-api-definition-id: delay-echo
 x-golem-api-definition-version: 0.0.1

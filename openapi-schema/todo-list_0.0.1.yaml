@@ -3,6 +3,17 @@ info:
   title: todo-list
   version: 0.0.1
 paths:
+  /v0.0.1/swagger-todo:
+    post:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      x-golem-api-gateway-binding:
+        binding-type: swagger-ui
   /v0.0.1/{user}/add:
     post:
       parameters:
@@ -107,6 +118,31 @@ paths:
         worker-name: |-
           let user: string = request.path.user;
           "${user}"
+    options:
+      parameters:
+      - in: path
+        name: user
+        description: 'Path parameter: user'
+        required: true
+        schema:
+          type: string
+        explode: false
+        style: simple
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      x-golem-api-gateway-binding:
+        binding-type: cors-preflight
+        response: |-
+          {
+            Access-Control-Allow-Headers: "Content-Type, Authorization",
+            Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS",
+            Access-Control-Allow-Origin: "*"
+          }
   /v0.0.1/{user}/count:
     post:
       parameters:
@@ -137,6 +173,31 @@ paths:
         worker-name: |-
           let user: string = request.path.user;
           "${user}"
+    options:
+      parameters:
+      - in: path
+        name: user
+        description: 'Path parameter: user'
+        required: true
+        schema:
+          type: string
+        explode: false
+        style: simple
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      x-golem-api-gateway-binding:
+        binding-type: cors-preflight
+        response: |-
+          {
+            Access-Control-Allow-Headers: "Content-Type, Authorization",
+            Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS",
+            Access-Control-Allow-Origin: "*"
+          }
   /v0.0.1/{user}/delete:
     post:
       parameters:
@@ -190,6 +251,31 @@ paths:
         worker-name: |-
           let user: string = request.path.user;
           "${user}"
+    options:
+      parameters:
+      - in: path
+        name: user
+        description: 'Path parameter: user'
+        required: true
+        schema:
+          type: string
+        explode: false
+        style: simple
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      x-golem-api-gateway-binding:
+        binding-type: cors-preflight
+        response: |-
+          {
+            Access-Control-Allow-Headers: "Content-Type, Authorization",
+            Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS",
+            Access-Control-Allow-Origin: "*"
+          }
   /v0.0.1/{user}/delete-all:
     post:
       parameters:
@@ -218,6 +304,31 @@ paths:
         worker-name: |-
           let user: string = request.path.user;
           "${user}"
+    options:
+      parameters:
+      - in: path
+        name: user
+        description: 'Path parameter: user'
+        required: true
+        schema:
+          type: string
+        explode: false
+        style: simple
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      x-golem-api-gateway-binding:
+        binding-type: cors-preflight
+        response: |-
+          {
+            Access-Control-Allow-Headers: "Content-Type, Authorization",
+            Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS",
+            Access-Control-Allow-Origin: "*"
+          }
   /v0.0.1/{user}/delete-done-items:
     post:
       parameters:
@@ -246,6 +357,31 @@ paths:
         worker-name: |-
           let user: string = request.path.user;
           "${user}"
+    options:
+      parameters:
+      - in: path
+        name: user
+        description: 'Path parameter: user'
+        required: true
+        schema:
+          type: string
+        explode: false
+        style: simple
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      x-golem-api-gateway-binding:
+        binding-type: cors-preflight
+        response: |-
+          {
+            Access-Control-Allow-Headers: "Content-Type, Authorization",
+            Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS",
+            Access-Control-Allow-Origin: "*"
+          }
   /v0.0.1/{user}/search:
     post:
       parameters:
@@ -375,6 +511,31 @@ paths:
         worker-name: |-
           let user: string = request.path.user;
           "${user}"
+    options:
+      parameters:
+      - in: path
+        name: user
+        description: 'Path parameter: user'
+        required: true
+        schema:
+          type: string
+        explode: false
+        style: simple
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      x-golem-api-gateway-binding:
+        binding-type: cors-preflight
+        response: |-
+          {
+            Access-Control-Allow-Headers: "Content-Type, Authorization",
+            Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS",
+            Access-Control-Allow-Origin: "*"
+          }
   /v0.0.1/{user}/update:
     post:
       parameters:
@@ -446,6 +607,31 @@ paths:
         worker-name: |-
           let user: string = request.path.user;
           "${user}"
+    options:
+      parameters:
+      - in: path
+        name: user
+        description: 'Path parameter: user'
+        required: true
+        schema:
+          type: string
+        explode: false
+        style: simple
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      x-golem-api-gateway-binding:
+        binding-type: cors-preflight
+        response: |-
+          {
+            Access-Control-Allow-Headers: "Content-Type, Authorization",
+            Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS",
+            Access-Control-Allow-Origin: "*"
+          }
 components: {}
 x-golem-api-definition-id: todo-list
 x-golem-api-definition-version: 0.0.1

@@ -1,10 +1,10 @@
 openapi: 3.0.0
 info:
   title: todo-list
-  version: 0.0.4
+  version: 0.0.3
 paths:
-  /v0.0.1/swagger:
-    get:
+  /v0.0.3/swagger-todo:
+    post:
       responses:
         '200':
           description: OK
@@ -14,7 +14,7 @@ paths:
                 type: object
       x-golem-api-gateway-binding:
         binding-type: swagger-ui
-  /v0.0.1/{user}/add:
+  /v0.0.3/{user}/add:
     post:
       parameters:
       - in: path
@@ -143,8 +143,8 @@ paths:
             Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS",
             Access-Control-Allow-Origin: "*"
           }
-  /v0.0.1/{user}/swagger:
-    get:
+  /v0.0.3/{user}/swagger:
+    post:
       parameters:
       - in: path
         name: user
