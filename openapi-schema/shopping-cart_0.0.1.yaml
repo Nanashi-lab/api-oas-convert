@@ -55,22 +55,12 @@ paths:
               - item
         required: true
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  body:
-                    type: string
-                  status:
-                    type: integer
-                    format: int64
-                    minimum: 0
-                required:
-                - body
-                - status
+                type: string
       x-golem-api-gateway-binding:
         binding-type: default
         component-name: shopping-cart
@@ -78,7 +68,7 @@ paths:
         response: |-
           let item = request.body.item;
           let result = golem:shoppingcart/api.{add-item}(item);
-          {status: 200u64, body: "Item added"}
+          {status: 200: u64, body: "Item added"}
         worker-name: |-
           let user: string = request.path.user;
           "worker-${user}"
@@ -124,33 +114,13 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  body:
-                    type: string
-                  status:
-                    type: integer
-                    format: int64
-                    minimum: 0
-                required:
-                - body
-                - status
+                type: string
         '201':
           description: Created
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  body:
-                    type: string
-                  status:
-                    type: integer
-                    format: int64
-                    minimum: 0
-                required:
-                - body
-                - status
+                type: string
         '204':
           description: No Content
         '400':
@@ -158,49 +128,19 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  body:
-                    type: string
-                  status:
-                    type: integer
-                    format: int64
-                    minimum: 0
-                required:
-                - body
-                - status
+                type: string
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  body:
-                    type: string
-                  status:
-                    type: integer
-                    format: int64
-                    minimum: 0
-                required:
-                - body
-                - status
+                type: string
         '500':
           description: Internal Server Error
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  body:
-                    type: string
-                  status:
-                    type: integer
-                    format: int64
-                    minimum: 0
-                required:
-                - body
-                - status
+                type: string
       x-golem-api-gateway-binding:
         binding-type: default
         component-name: shopping-cart
@@ -208,7 +148,7 @@ paths:
         response: |-
           let result = golem:shoppingcart/api.{checkout}();
           let body = match result {  success(reply) => reply.order-id, error(message) => message } ;
-          {status: 200u64, body: body}
+          {status: 200: u64, body: body}
         worker-name: |-
           let user: string = request.path.user;
           "worker-${user}"
@@ -249,48 +189,38 @@ paths:
         explode: false
         style: simple
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  body:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        product-id:
-                          type: string
-                        name:
-                          type: string
-                        price:
-                          type: number
-                          format: float
-                        quantity:
-                          type: integer
-                          format: int32
-                          minimum: 0
-                      required:
-                      - product-id
-                      - name
-                      - price
-                      - quantity
-                  status:
-                    type: integer
-                    format: int64
-                    minimum: 0
-                required:
-                - body
-                - status
+                type: array
+                items:
+                  type: object
+                  properties:
+                    product-id:
+                      type: string
+                    name:
+                      type: string
+                    price:
+                      type: number
+                      format: float
+                    quantity:
+                      type: integer
+                      format: int32
+                      minimum: 0
+                  required:
+                  - product-id
+                  - name
+                  - price
+                  - quantity
       x-golem-api-gateway-binding:
         binding-type: default
         component-name: shopping-cart
         component-version: 0
         response: |-
           let result = golem:shoppingcart/api.{get-cart-contents}();
-          {status: 200u64, body: result}
+          {status: 200: u64, body: result}
         worker-name: |-
           let user: string = request.path.user;
           "worker-${user}"
@@ -343,22 +273,12 @@ paths:
               - user
         required: true
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  body:
-                    type: string
-                  status:
-                    type: integer
-                    format: int64
-                    minimum: 0
-                required:
-                - body
-                - status
+                type: string
       x-golem-api-gateway-binding:
         binding-type: default
         component-name: shopping-cart
@@ -366,7 +286,7 @@ paths:
         response: |-
           let user: string = request.body.user;
           let result = golem:shoppingcart/api.{initialize-cart}(user);
-          {status: 200u64, body: "User added"}
+          {status: 200: u64, body: "User added"}
         worker-name: |-
           let user: string = request.path.user;
           "worker-${user}"
@@ -419,22 +339,12 @@ paths:
               - productid
         required: true
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  body:
-                    type: string
-                  status:
-                    type: integer
-                    format: int64
-                    minimum: 0
-                required:
-                - body
-                - status
+                type: string
       x-golem-api-gateway-binding:
         binding-type: default
         component-name: shopping-cart
@@ -442,7 +352,7 @@ paths:
         response: |-
           let productid: string = request.body.productid;
           let result = golem:shoppingcart/api.{remove-item}(productid);
-          {status: 200u64, body: "Product Removed"}
+          {status: 200: u64, body: "Product Removed"}
         worker-name: |-
           let user: string = request.path.user;
           "worker-${user}"
@@ -500,22 +410,12 @@ paths:
               - quantity
         required: true
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  body:
-                    type: string
-                  status:
-                    type: integer
-                    format: int64
-                    minimum: 0
-                required:
-                - body
-                - status
+                type: string
       x-golem-api-gateway-binding:
         binding-type: default
         component-name: shopping-cart
@@ -524,7 +424,7 @@ paths:
           let productid: string = request.body.productid;
           let quantity: u32 = request.body.quantity;
           let result = golem:shoppingcart/api.{update-item-quantity}(productid, quantity);
-          {status: 200u64, body: "Item Updated"}
+          {status: 200: u64, body: "Item Updated"}
         worker-name: |-
           let user: string = request.path.user;
           "worker-${user}"

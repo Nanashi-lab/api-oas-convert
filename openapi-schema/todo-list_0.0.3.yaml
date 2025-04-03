@@ -49,7 +49,6 @@ paths:
                   required:
                   - title
                   - priority
-                  - deadline
               required:
               - input
         required: true
@@ -98,7 +97,6 @@ paths:
                       - status
                       - created-timestamp
                       - updated-timestamp
-                      - deadline
                   required:
                   - ok
                 - type: object
@@ -114,7 +112,7 @@ paths:
         response: |-
           let input = request.body.input;
           let result = golem:todolist/api.{add}(input);
-          {status: 200u64, body: result}
+          {status: 200: u64, body: result}
         worker-name: |-
           let user: string = request.path.user;
           "${user}"
@@ -155,8 +153,8 @@ paths:
         explode: false
         style: simple
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:

@@ -1,0 +1,239 @@
+{
+  "createdAt": "2025-03-26T09:27:32.327667396+00:00",
+  "draft": true,
+  "id": "todo-list",
+  "routes": [
+    {
+      "binding": {
+        "bindingType": "swagger-ui",
+        "component": null,
+        "corsPreflight": null,
+        "idempotencyKey": null,
+        "idempotencyKeyInput": null,
+        "response": null,
+        "responseMappingInput": null,
+        "responseMappingOutput": null,
+        "workerName": null,
+        "workerNameInput": null
+      },
+      "method": "Get",
+      "path": "/v0.0.3/swagger-todo",
+      "security": null
+    },
+    {
+      "binding": {
+        "bindingType": "default",
+        "component": {
+          "name": "todo-list",
+          "version": 0
+        },
+        "corsPreflight": null,
+        "idempotencyKey": null,
+        "idempotencyKeyInput": null,
+        "response": "let input = request.body.input;\nlet result = golem:todolist/api.{add}(input);\n{status: 200: u64, body: result}",
+        "responseMappingInput": {
+          "types": {
+            "request": {
+              "fields": [
+                {
+                  "name": "body",
+                  "typ": {
+                    "fields": [
+                      {
+                        "name": "input",
+                        "typ": {
+                          "fields": [
+                            {
+                              "name": "title",
+                              "typ": {
+                                "type": "Str"
+                              }
+                            },
+                            {
+                              "name": "priority",
+                              "typ": {
+                                "cases": [
+                                  "low",
+                                  "medium",
+                                  "high"
+                                ],
+                                "type": "Enum"
+                              }
+                            },
+                            {
+                              "name": "deadline",
+                              "typ": {
+                                "inner": {
+                                  "type": "Str"
+                                },
+                                "type": "Option"
+                              }
+                            }
+                          ],
+                          "type": "Record"
+                        }
+                      }
+                    ],
+                    "type": "Record"
+                  }
+                }
+              ],
+              "type": "Record"
+            }
+          }
+        },
+        "responseMappingOutput": {
+          "analysed_type": {
+            "fields": [
+              {
+                "name": "body",
+                "typ": {
+                  "err": {
+                    "type": "Str"
+                  },
+                  "ok": {
+                    "fields": [
+                      {
+                        "name": "id",
+                        "typ": {
+                          "type": "Str"
+                        }
+                      },
+                      {
+                        "name": "title",
+                        "typ": {
+                          "type": "Str"
+                        }
+                      },
+                      {
+                        "name": "priority",
+                        "typ": {
+                          "cases": [
+                            "low",
+                            "medium",
+                            "high"
+                          ],
+                          "type": "Enum"
+                        }
+                      },
+                      {
+                        "name": "status",
+                        "typ": {
+                          "cases": [
+                            "backlog",
+                            "in-progress",
+                            "done"
+                          ],
+                          "type": "Enum"
+                        }
+                      },
+                      {
+                        "name": "created-timestamp",
+                        "typ": {
+                          "type": "S64"
+                        }
+                      },
+                      {
+                        "name": "updated-timestamp",
+                        "typ": {
+                          "type": "S64"
+                        }
+                      },
+                      {
+                        "name": "deadline",
+                        "typ": {
+                          "inner": {
+                            "type": "S64"
+                          },
+                          "type": "Option"
+                        }
+                      }
+                    ],
+                    "type": "Record"
+                  },
+                  "type": "Result"
+                }
+              },
+              {
+                "name": "status",
+                "typ": {
+                  "type": "U64"
+                }
+              }
+            ],
+            "type": "Record"
+          }
+        },
+        "workerName": "let user: string = request.path.user;\n\"${user}\"",
+        "workerNameInput": {
+          "types": {
+            "request": {
+              "fields": [
+                {
+                  "name": "path",
+                  "typ": {
+                    "fields": [
+                      {
+                        "name": "user",
+                        "typ": {
+                          "type": "Str"
+                        }
+                      }
+                    ],
+                    "type": "Record"
+                  }
+                }
+              ],
+              "type": "Record"
+            }
+          }
+        }
+      },
+      "method": "Post",
+      "path": "/v0.0.3/{user}/add",
+      "security": null
+    },
+    {
+      "binding": {
+        "bindingType": "cors-preflight",
+        "component": null,
+        "corsPreflight": {
+          "allowCredentials": null,
+          "allowHeaders": "Content-Type, Authorization",
+          "allowMethods": "GET, POST, PUT, DELETE, OPTIONS",
+          "allowOrigin": "*",
+          "exposeHeaders": null,
+          "maxAge": null
+        },
+        "idempotencyKey": null,
+        "idempotencyKeyInput": null,
+        "response": null,
+        "responseMappingInput": null,
+        "responseMappingOutput": null,
+        "workerName": null,
+        "workerNameInput": null
+      },
+      "method": "Options",
+      "path": "/v0.0.3/{user}/add",
+      "security": null
+    },
+    {
+      "binding": {
+        "bindingType": "swagger-ui",
+        "component": null,
+        "corsPreflight": null,
+        "idempotencyKey": null,
+        "idempotencyKeyInput": null,
+        "response": null,
+        "responseMappingInput": null,
+        "responseMappingOutput": null,
+        "workerName": null,
+        "workerNameInput": null
+      },
+      "method": "Post",
+      "path": "/v0.0.3/{user}/swagger",
+      "security": null
+    }
+  ],
+  "version": "0.0.3"
+}
