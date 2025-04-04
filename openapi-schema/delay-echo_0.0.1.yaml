@@ -23,6 +23,24 @@ paths:
               - time
         required: true
       responses:
+        default:
+          description: Created
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    ok:
+                      type: string
+                  required:
+                  - ok
+                - type: object
+                  properties:
+                    err:
+                      type: string
+                  required:
+                  - err
         '201':
           description: Created
           content:
@@ -51,6 +69,12 @@ paths:
         worker-name: '"worker-zero"'
     options:
       responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
         '200':
           description: OK
           content:
@@ -68,6 +92,12 @@ paths:
   /v0.0.1/swagger-delay:
     get:
       responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
         '200':
           description: OK
           content:
@@ -88,6 +118,24 @@ paths:
         explode: false
         style: simple
       responses:
+        default:
+          description: Created
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    ok:
+                      type: string
+                  required:
+                  - ok
+                - type: object
+                  properties:
+                    err:
+                      type: string
+                  required:
+                  - err
         '201':
           description: Created
           content:
@@ -127,6 +175,12 @@ paths:
         explode: false
         style: simple
       responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
         '200':
           description: OK
           content:
@@ -170,6 +224,24 @@ paths:
               - time
         required: true
       responses:
+        default:
+          description: Created
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    ok:
+                      type: string
+                  required:
+                  - ok
+                - type: object
+                  properties:
+                    err:
+                      type: string
+                  required:
+                  - err
         '201':
           description: Created
           content:
@@ -209,6 +281,12 @@ paths:
         explode: false
         style: simple
       responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
         '200':
           description: OK
           content:
@@ -239,7 +317,9 @@ paths:
         description: 'Path parameter: time'
         required: true
         schema:
-          type: string
+          type: integer
+          format: int32
+          minimum: 0
         explode: false
         style: simple
       requestBody:
@@ -250,6 +330,24 @@ paths:
               type: object
         required: true
       responses:
+        default:
+          description: Created
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    ok:
+                      type: string
+                  required:
+                  - ok
+                - type: object
+                  properties:
+                    err:
+                      type: string
+                  required:
+                  - err
         '201':
           description: Created
           content:
@@ -299,6 +397,12 @@ paths:
         explode: false
         style: simple
       responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
         '200':
           description: OK
           content:
@@ -329,7 +433,9 @@ paths:
         description: 'Path parameter: time'
         required: true
         schema:
-          type: string
+          type: integer
+          format: int32
+          minimum: 0
         explode: false
         style: simple
       requestBody:
@@ -340,8 +446,8 @@ paths:
               type: object
         required: true
       responses:
-        '200':
-          description: OK
+        default:
+          description: Created
           content:
             application/json:
               schema:
@@ -360,62 +466,6 @@ paths:
                   - err
         '201':
           description: Created
-          content:
-            application/json:
-              schema:
-                oneOf:
-                - type: object
-                  properties:
-                    ok:
-                      type: string
-                  required:
-                  - ok
-                - type: object
-                  properties:
-                    err:
-                      type: string
-                  required:
-                  - err
-        '204':
-          description: No Content
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                oneOf:
-                - type: object
-                  properties:
-                    ok:
-                      type: string
-                  required:
-                  - ok
-                - type: object
-                  properties:
-                    err:
-                      type: string
-                  required:
-                  - err
-        '404':
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                oneOf:
-                - type: object
-                  properties:
-                    ok:
-                      type: string
-                  required:
-                  - ok
-                - type: object
-                  properties:
-                    err:
-                      type: string
-                  required:
-                  - err
-        '500':
-          description: Internal Server Error
           content:
             application/json:
               schema:
@@ -463,6 +513,12 @@ paths:
         explode: false
         style: simple
       responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
         '200':
           description: OK
           content:

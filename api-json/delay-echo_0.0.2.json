@@ -1,6 +1,6 @@
 {
-  "createdAt": "2025-04-04T03:14:00.955981361+00:00",
-  "draft": false,
+  "createdAt": "2025-04-04T06:54:46.112381866+00:00",
+  "draft": true,
   "id": "delay-echo",
   "routes": [
     {
@@ -193,6 +193,23 @@
       },
       "method": "Options",
       "path": "/v0.0.2/echo-variant2",
+      "security": null
+    },
+    {
+      "binding": {
+        "bindingType": "swagger-ui",
+        "component": null,
+        "corsPreflight": null,
+        "idempotencyKey": null,
+        "idempotencyKeyInput": null,
+        "response": null,
+        "responseMappingInput": null,
+        "responseMappingOutput": null,
+        "workerName": null,
+        "workerNameInput": null
+      },
+      "method": "Get",
+      "path": "/v0.0.2/swagger-delay-variant",
       "security": null
     }
   ],

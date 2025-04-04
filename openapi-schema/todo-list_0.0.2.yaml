@@ -6,6 +6,12 @@ paths:
   /v0.0.2/swagger-todo:
     get:
       responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
         '200':
           description: OK
           content:
@@ -44,6 +50,12 @@ paths:
               - title
         required: true
       responses:
+        default:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
         '201':
           description: Created
           content:
@@ -74,6 +86,12 @@ paths:
         explode: false
         style: simple
       responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
         '200':
           description: OK
           content:
@@ -118,6 +136,58 @@ paths:
               - title
         required: true
       responses:
+        default:
+          description: Created
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    ok:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        title:
+                          type: string
+                        priority:
+                          type: string
+                          enum:
+                          - low
+                          - medium
+                          - high
+                        status:
+                          type: string
+                          enum:
+                          - backlog
+                          - in-progress
+                          - done
+                        created-timestamp:
+                          type: integer
+                          format: int64
+                        updated-timestamp:
+                          type: integer
+                          format: int64
+                        deadline:
+                          nullable: true
+                          type: integer
+                          format: int64
+                      required:
+                      - id
+                      - title
+                      - priority
+                      - status
+                      - created-timestamp
+                      - updated-timestamp
+                  required:
+                  - ok
+                - type: object
+                  properties:
+                    err:
+                      type: string
+                  required:
+                  - err
         '201':
           description: Created
           content:
@@ -195,6 +265,12 @@ paths:
         explode: false
         style: simple
       responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
         '200':
           description: OK
           content:
@@ -221,6 +297,12 @@ paths:
         explode: false
         style: simple
       responses:
+        default:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
         '201':
           description: Created
           content:
@@ -251,6 +333,12 @@ paths:
         explode: false
         style: simple
       responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
         '200':
           description: OK
           content:
@@ -295,6 +383,12 @@ paths:
               - id
         required: true
       responses:
+        default:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
         '201':
           description: Created
           content:
@@ -325,6 +419,12 @@ paths:
         explode: false
         style: simple
       responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
         '200':
           description: OK
           content:
@@ -366,6 +466,58 @@ paths:
               type: object
         required: true
       responses:
+        default:
+          description: Created
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    ok:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        title:
+                          type: string
+                        priority:
+                          type: string
+                          enum:
+                          - low
+                          - medium
+                          - high
+                        status:
+                          type: string
+                          enum:
+                          - backlog
+                          - in-progress
+                          - done
+                        created-timestamp:
+                          type: integer
+                          format: int64
+                        updated-timestamp:
+                          type: integer
+                          format: int64
+                        deadline:
+                          nullable: true
+                          type: integer
+                          format: int64
+                      required:
+                      - id
+                      - title
+                      - priority
+                      - status
+                      - created-timestamp
+                      - updated-timestamp
+                  required:
+                  - ok
+                - type: object
+                  properties:
+                    err:
+                      type: string
+                  required:
+                  - err
         '201':
           description: Created
           content:
@@ -448,6 +600,12 @@ paths:
         explode: false
         style: simple
       responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
         '200':
           description: OK
           content:

@@ -1,11 +1,17 @@
 openapi: 3.0.0
 info:
-  title: todo-list
-  version: 0.0.3
+  title: simple-todo-list
+  version: 0.0.1
 paths:
-  /v0.0.3/swagger-todo:
+  /v0.0.1/swagger-simple:
     get:
       responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
         '200':
           description: OK
           content:
@@ -14,7 +20,7 @@ paths:
                 type: object
       x-golem-api-gateway-binding:
         binding-type: swagger-ui
-  /v0.0.3/{user}/add:
+  /v0.0.1/{user}/add:
     post:
       parameters:
       - in: path
@@ -53,6 +59,58 @@ paths:
               - input
         required: true
       responses:
+        default:
+          description: Created
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    ok:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        title:
+                          type: string
+                        priority:
+                          type: string
+                          enum:
+                          - low
+                          - medium
+                          - high
+                        status:
+                          type: string
+                          enum:
+                          - backlog
+                          - in-progress
+                          - done
+                        created-timestamp:
+                          type: integer
+                          format: int64
+                        updated-timestamp:
+                          type: integer
+                          format: int64
+                        deadline:
+                          nullable: true
+                          type: integer
+                          format: int64
+                      required:
+                      - id
+                      - title
+                      - priority
+                      - status
+                      - created-timestamp
+                      - updated-timestamp
+                  required:
+                  - ok
+                - type: object
+                  properties:
+                    err:
+                      type: string
+                  required:
+                  - err
         '201':
           description: Created
           content:
@@ -127,6 +185,12 @@ paths:
         explode: false
         style: simple
       responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
         '200':
           description: OK
           content:
@@ -141,7 +205,7 @@ paths:
             Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS",
             Access-Control-Allow-Origin: "*"
           }
-  /v0.0.3/{user}/swagger:
+  /v0.0.1/{user}/swagger:
     post:
       parameters:
       - in: path
@@ -153,6 +217,12 @@ paths:
         explode: false
         style: simple
       responses:
+        default:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
         '201':
           description: Created
           content:
@@ -162,5 +232,5 @@ paths:
       x-golem-api-gateway-binding:
         binding-type: swagger-ui
 components: {}
-x-golem-api-definition-id: todo-list
-x-golem-api-definition-version: 0.0.3
+x-golem-api-definition-id: simple-todo-list
+x-golem-api-definition-version: 0.0.1

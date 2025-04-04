@@ -6,6 +6,12 @@ paths:
   /v0.0.1/swagger-shopping-cart:
     get:
       responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
         '200':
           description: OK
           content:
@@ -55,6 +61,12 @@ paths:
               - item
         required: true
       responses:
+        default:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
         '201':
           description: Created
           content:
@@ -83,6 +95,12 @@ paths:
         explode: false
         style: simple
       responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
         '200':
           description: OK
           content:
@@ -109,34 +127,14 @@ paths:
         explode: false
         style: simple
       responses:
-        '200':
-          description: OK
+        default:
+          description: Created
           content:
             application/json:
               schema:
                 type: string
         '201':
           description: Created
-          content:
-            application/json:
-              schema:
-                type: string
-        '204':
-          description: No Content
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                type: string
-        '404':
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                type: string
-        '500':
-          description: Internal Server Error
           content:
             application/json:
               schema:
@@ -163,6 +161,12 @@ paths:
         explode: false
         style: simple
       responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
         '200':
           description: OK
           content:
@@ -189,6 +193,31 @@ paths:
         explode: false
         style: simple
       responses:
+        default:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    product-id:
+                      type: string
+                    name:
+                      type: string
+                    price:
+                      type: number
+                      format: float
+                    quantity:
+                      type: integer
+                      format: int32
+                      minimum: 0
+                  required:
+                  - product-id
+                  - name
+                  - price
+                  - quantity
         '201':
           description: Created
           content:
@@ -235,6 +264,12 @@ paths:
         explode: false
         style: simple
       responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
         '200':
           description: OK
           content:
@@ -273,6 +308,12 @@ paths:
               - user
         required: true
       responses:
+        default:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
         '201':
           description: Created
           content:
@@ -301,6 +342,12 @@ paths:
         explode: false
         style: simple
       responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
         '200':
           description: OK
           content:
@@ -339,6 +386,12 @@ paths:
               - productid
         required: true
       responses:
+        default:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
         '201':
           description: Created
           content:
@@ -367,6 +420,12 @@ paths:
         explode: false
         style: simple
       responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
         '200':
           description: OK
           content:
@@ -410,6 +469,12 @@ paths:
               - quantity
         required: true
       responses:
+        default:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
         '201':
           description: Created
           content:
@@ -439,6 +504,12 @@ paths:
         explode: false
         style: simple
       responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
         '200':
           description: OK
           content:

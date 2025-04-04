@@ -1,7 +1,7 @@
 {
-  "createdAt": "2025-03-26T09:27:32.327667396+00:00",
+  "createdAt": "2025-04-04T06:55:05.606377378+00:00",
   "draft": true,
-  "id": "todo-list",
+  "id": "simple-todo-list",
   "routes": [
     {
       "binding": {
@@ -17,7 +17,7 @@
         "workerNameInput": null
       },
       "method": "Get",
-      "path": "/v0.0.3/swagger-todo",
+      "path": "/v0.0.1/swagger-simple",
       "security": null
     },
     {
@@ -190,7 +190,7 @@
         }
       },
       "method": "Post",
-      "path": "/v0.0.3/{user}/add",
+      "path": "/v0.0.1/{user}/add",
       "security": null
     },
     {
@@ -214,7 +214,7 @@
         "workerNameInput": null
       },
       "method": "Options",
-      "path": "/v0.0.3/{user}/add",
+      "path": "/v0.0.1/{user}/add",
       "security": null
     },
     {
@@ -231,9 +231,9 @@
         "workerNameInput": null
       },
       "method": "Post",
-      "path": "/v0.0.3/{user}/swagger",
+      "path": "/v0.0.1/{user}/swagger",
       "security": null
     }
   ],
-  "version": "0.0.3"
+  "version": "0.0.1"
 }
