@@ -1,0 +1,200 @@
+{
+  "createdAt": "2025-04-04T03:14:00.955981361+00:00",
+  "draft": false,
+  "id": "delay-echo",
+  "routes": [
+    {
+      "binding": {
+        "bindingType": "default",
+        "component": {
+          "name": "delay-echo",
+          "version": 0
+        },
+        "corsPreflight": null,
+        "idempotencyKey": null,
+        "idempotencyKeyInput": null,
+        "response": "let result = golem:delayecho/api.{echo-variant}(request.body.message);\n{status: 200: u64, body: result}",
+        "responseMappingInput": {
+          "types": {
+            "request": {
+              "fields": [
+                {
+                  "name": "body",
+                  "typ": {
+                    "fields": [
+                      {
+                        "name": "message",
+                        "typ": {
+                          "type": "Str"
+                        }
+                      }
+                    ],
+                    "type": "Record"
+                  }
+                }
+              ],
+              "type": "Record"
+            }
+          }
+        },
+        "responseMappingOutput": {
+          "analysed_type": {
+            "fields": [
+              {
+                "name": "body",
+                "typ": {
+                  "cases": [
+                    {
+                      "name": "rand1",
+                      "typ": {
+                        "type": "Str"
+                      }
+                    },
+                    {
+                      "name": "rand2",
+                      "typ": {
+                        "type": "Str"
+                      }
+                    },
+                    {
+                      "name": "rand3",
+                      "typ": {
+                        "type": "Str"
+                      }
+                    }
+                  ],
+                  "type": "Variant"
+                }
+              },
+              {
+                "name": "status",
+                "typ": {
+                  "type": "U64"
+                }
+              }
+            ],
+            "type": "Record"
+          }
+        },
+        "workerName": "\"worker-static\"",
+        "workerNameInput": {
+          "types": {}
+        }
+      },
+      "method": "Post",
+      "path": "/v0.0.2/echo-variant",
+      "security": null
+    },
+    {
+      "binding": {
+        "bindingType": "cors-preflight",
+        "component": null,
+        "corsPreflight": {
+          "allowCredentials": null,
+          "allowHeaders": "Content-Type, Authorization",
+          "allowMethods": "GET, POST, PUT, DELETE, OPTIONS",
+          "allowOrigin": "*",
+          "exposeHeaders": null,
+          "maxAge": null
+        },
+        "idempotencyKey": null,
+        "idempotencyKeyInput": null,
+        "response": null,
+        "responseMappingInput": null,
+        "responseMappingOutput": null,
+        "workerName": null,
+        "workerNameInput": null
+      },
+      "method": "Options",
+      "path": "/v0.0.2/echo-variant",
+      "security": null
+    },
+    {
+      "binding": {
+        "bindingType": "default",
+        "component": {
+          "name": "delay-echo",
+          "version": 0
+        },
+        "corsPreflight": null,
+        "idempotencyKey": null,
+        "idempotencyKeyInput": null,
+        "response": "let result = golem:delayecho/api.{echo-variant}(request.body.message);\nlet body = match result {  rand1(msg) => msg, rand2(msg) => msg, rand3(msg) => msg } ;\nlet status = match result {  rand1(_) => 200: u32, rand2(_) => 200: u32, rand3(_) => 400: u32 } ;\n{status: status, body: body}",
+        "responseMappingInput": {
+          "types": {
+            "request": {
+              "fields": [
+                {
+                  "name": "body",
+                  "typ": {
+                    "fields": [
+                      {
+                        "name": "message",
+                        "typ": {
+                          "type": "Str"
+                        }
+                      }
+                    ],
+                    "type": "Record"
+                  }
+                }
+              ],
+              "type": "Record"
+            }
+          }
+        },
+        "responseMappingOutput": {
+          "analysed_type": {
+            "fields": [
+              {
+                "name": "body",
+                "typ": {
+                  "type": "Str"
+                }
+              },
+              {
+                "name": "status",
+                "typ": {
+                  "type": "U32"
+                }
+              }
+            ],
+            "type": "Record"
+          }
+        },
+        "workerName": "\"worker-static\"",
+        "workerNameInput": {
+          "types": {}
+        }
+      },
+      "method": "Post",
+      "path": "/v0.0.2/echo-variant2",
+      "security": null
+    },
+    {
+      "binding": {
+        "bindingType": "cors-preflight",
+        "component": null,
+        "corsPreflight": {
+          "allowCredentials": null,
+          "allowHeaders": "Content-Type, Authorization",
+          "allowMethods": "GET, POST, PUT, DELETE, OPTIONS",
+          "allowOrigin": "*",
+          "exposeHeaders": null,
+          "maxAge": null
+        },
+        "idempotencyKey": null,
+        "idempotencyKeyInput": null,
+        "response": null,
+        "responseMappingInput": null,
+        "responseMappingOutput": null,
+        "workerName": null,
+        "workerNameInput": null
+      },
+      "method": "Options",
+      "path": "/v0.0.2/echo-variant2",
+      "security": null
+    }
+  ],
+  "version": "0.0.2"
+}
