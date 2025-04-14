@@ -76,15 +76,6 @@ paths:
           let user: string = request.path.user;
           "${user}"
     options:
-      parameters:
-      - in: path
-        name: user
-        description: 'Path parameter: user'
-        required: true
-        schema:
-          type: string
-        explode: false
-        style: simple
       responses:
         default:
           description: OK
@@ -255,15 +246,6 @@ paths:
           let user: string = request.path.user;
           "${user}"
     options:
-      parameters:
-      - in: path
-        name: user
-        description: 'Path parameter: user'
-        required: true
-        schema:
-          type: string
-        explode: false
-        style: simple
       responses:
         default:
           description: OK
@@ -323,15 +305,6 @@ paths:
           let user: string = request.path.user;
           "${user}"
     options:
-      parameters:
-      - in: path
-        name: user
-        description: 'Path parameter: user'
-        required: true
-        schema:
-          type: string
-        explode: false
-        style: simple
       responses:
         default:
           description: OK
@@ -409,15 +382,6 @@ paths:
           let user: string = request.path.user;
           "${user}"
     options:
-      parameters:
-      - in: path
-        name: user
-        description: 'Path parameter: user'
-        required: true
-        schema:
-          type: string
-        explode: false
-        style: simple
       responses:
         default:
           description: OK
@@ -582,23 +546,6 @@ paths:
           let user: string = request.path.user;
           "${user}"
     options:
-      parameters:
-      - in: path
-        name: user
-        description: 'Path parameter: user'
-        required: true
-        schema:
-          type: string
-        explode: false
-        style: simple
-      - in: path
-        name: id
-        description: 'Path parameter: id'
-        required: true
-        schema:
-          type: string
-        explode: false
-        style: simple
       responses:
         default:
           description: OK

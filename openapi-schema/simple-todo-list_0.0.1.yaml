@@ -175,15 +175,6 @@ paths:
           let user: string = request.path.user;
           "${user}"
     options:
-      parameters:
-      - in: path
-        name: user
-        description: 'Path parameter: user'
-        required: true
-        schema:
-          type: string
-        explode: false
-        style: simple
       responses:
         default:
           description: OK
@@ -207,15 +198,6 @@ paths:
           }
   /v0.0.1/{user}/swagger:
     post:
-      parameters:
-      - in: path
-        name: user
-        description: 'Path parameter: user'
-        required: true
-        schema:
-          type: string
-        explode: false
-        style: simple
       responses:
         default:
           description: Created

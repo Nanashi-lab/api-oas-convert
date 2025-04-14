@@ -165,15 +165,6 @@ paths:
           let user: string = request.path.user;
           "worker-${user}"
     options:
-      parameters:
-      - in: path
-        name: user
-        description: 'Path parameter: user'
-        required: true
-        schema:
-          type: string
-        explode: false
-        style: simple
       responses:
         default:
           description: OK
@@ -271,15 +262,6 @@ paths:
           let user: string = request.path.user;
           "worker-${user}"
     options:
-      parameters:
-      - in: path
-        name: user
-        description: 'Path parameter: user'
-        required: true
-        schema:
-          type: string
-        explode: false
-        style: simple
       responses:
         default:
           description: OK
@@ -320,6 +302,14 @@ paths:
           type: integer
           format: int32
           minimum: 0
+        explode: false
+        style: simple
+      - in: path
+        name: user
+        description: 'Path parameter: user'
+        required: true
+        schema:
+          type: string
         explode: false
         style: simple
       requestBody:
@@ -379,23 +369,6 @@ paths:
           let user: string = request.path.user;
           "worker-${user}"
     options:
-      parameters:
-      - in: path
-        name: user
-        description: 'Path parameter: user'
-        required: true
-        schema:
-          type: string
-        explode: false
-        style: simple
-      - in: path
-        name: time
-        description: 'Path parameter: time'
-        required: true
-        schema:
-          type: string
-        explode: false
-        style: simple
       responses:
         default:
           description: OK
@@ -495,23 +468,6 @@ paths:
           let user: string = request.path.user;
           "worker-${user}"
     options:
-      parameters:
-      - in: path
-        name: user
-        description: 'Path parameter: user'
-        required: true
-        schema:
-          type: string
-        explode: false
-        style: simple
-      - in: path
-        name: time
-        description: 'Path parameter: time'
-        required: true
-        schema:
-          type: string
-        explode: false
-        style: simple
       responses:
         default:
           description: OK
