@@ -96,7 +96,7 @@ paths:
             Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS",
             Access-Control-Allow-Origin: "*"
           }
-  /v0.0.3/echo-query:
+  /v0.0.3/echo-query?{echo}:
     post:
       parameters:
       - in: query

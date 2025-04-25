@@ -1,5 +1,5 @@
 {
-  "createdAt": "2025-04-11T05:16:39.814919270+00:00",
+  "createdAt": "2025-04-25T13:36:08.122013778+00:00",
   "draft": true,
   "id": "delay-echo",
   "routes": [
@@ -38,7 +38,7 @@
           }
         },
         "responseMappingOutput": {
-          "analysed_type": {
+          "analysedType": {
             "fields": [
               {
                 "name": "status",
@@ -142,7 +142,7 @@
           }
         },
         "responseMappingOutput": {
-          "analysed_type": {
+          "analysedType": {
             "fields": [
               {
                 "name": "status",
@@ -166,7 +166,7 @@
         }
       },
       "method": "Post",
-      "path": "/v0.0.3/echo-query",
+      "path": "/v0.0.3/echo-query?{echo}",
       "security": null
     },
     {
@@ -190,7 +190,7 @@
         "workerNameInput": null
       },
       "method": "Options",
-      "path": "/v0.0.3/echo-query",
+      "path": "/v0.0.3/echo-query?{echo}",
       "security": null
     },
     {

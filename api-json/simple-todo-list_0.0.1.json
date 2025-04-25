@@ -230,7 +230,7 @@
         "workerName": null,
         "workerNameInput": null
       },
-      "method": "Post",
+      "method": "Get",
       "path": "/v0.0.1/{user}/swagger",
       "security": null
     }

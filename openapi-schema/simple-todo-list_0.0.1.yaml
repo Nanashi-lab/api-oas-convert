@@ -197,16 +197,16 @@ paths:
             Access-Control-Allow-Origin: "*"
           }
   /v0.0.1/{user}/swagger:
-    post:
+    get:
       responses:
         default:
-          description: Created
+          description: OK
           content:
             application/json:
               schema:
                 type: object
-        '201':
-          description: Created
+        '200':
+          description: OK
           content:
             application/json:
               schema:
