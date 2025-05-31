@@ -1,5 +1,5 @@
 {
-  "createdAt": "2025-04-04T06:54:55.339404408+00:00",
+  "createdAt": "2025-05-31T01:52:04.694007339+00:00",
   "draft": true,
   "id": "shopping-cart",
   "routes": [
@@ -10,6 +10,7 @@
         "corsPreflight": null,
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": null,
         "responseMappingInput": null,
         "responseMappingOutput": null,
@@ -30,6 +31,7 @@
         "corsPreflight": null,
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": "let item = request.body.item;\nlet result = golem:shoppingcart/api.{add-item}(item);\n{status: 200: u64, body: \"Item added\"}",
         "responseMappingInput": {
           "types": {
@@ -81,18 +83,18 @@
           }
         },
         "responseMappingOutput": {
-          "analysed_type": {
+          "analysedType": {
             "fields": [
-              {
-                "name": "body",
-                "typ": {
-                  "type": "Str"
-                }
-              },
               {
                 "name": "status",
                 "typ": {
                   "type": "U64"
+                }
+              },
+              {
+                "name": "body",
+                "typ": {
+                  "type": "Str"
                 }
               }
             ],
@@ -142,6 +144,7 @@
         },
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": null,
         "responseMappingInput": null,
         "responseMappingOutput": null,
@@ -162,23 +165,24 @@
         "corsPreflight": null,
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": "let result = golem:shoppingcart/api.{checkout}();\nlet body = match result {  success(reply) => reply.order-id, error(message) => message } ;\n{status: 200: u64, body: body}",
         "responseMappingInput": {
           "types": {}
         },
         "responseMappingOutput": {
-          "analysed_type": {
+          "analysedType": {
             "fields": [
-              {
-                "name": "body",
-                "typ": {
-                  "type": "Str"
-                }
-              },
               {
                 "name": "status",
                 "typ": {
                   "type": "U64"
+                }
+              },
+              {
+                "name": "body",
+                "typ": {
+                  "type": "Str"
                 }
               }
             ],
@@ -228,6 +232,7 @@
         },
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": null,
         "responseMappingInput": null,
         "responseMappingOutput": null,
@@ -248,13 +253,20 @@
         "corsPreflight": null,
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": "let result = golem:shoppingcart/api.{get-cart-contents}();\n{status: 200: u64, body: result}",
         "responseMappingInput": {
           "types": {}
         },
         "responseMappingOutput": {
-          "analysed_type": {
+          "analysedType": {
             "fields": [
+              {
+                "name": "status",
+                "typ": {
+                  "type": "U64"
+                }
+              },
               {
                 "name": "body",
                 "typ": {
@@ -289,12 +301,6 @@
                   },
                   "type": "List"
                 }
-              },
-              {
-                "name": "status",
-                "typ": {
-                  "type": "U64"
-                }
               }
             ],
             "type": "Record"
@@ -343,6 +349,7 @@
         },
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": null,
         "responseMappingInput": null,
         "responseMappingOutput": null,
@@ -363,6 +370,7 @@
         "corsPreflight": null,
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": "let user: string = request.body.user;\nlet result = golem:shoppingcart/api.{initialize-cart}(user);\n{status: 200: u64, body: \"User added\"}",
         "responseMappingInput": {
           "types": {
@@ -388,18 +396,18 @@
           }
         },
         "responseMappingOutput": {
-          "analysed_type": {
+          "analysedType": {
             "fields": [
-              {
-                "name": "body",
-                "typ": {
-                  "type": "Str"
-                }
-              },
               {
                 "name": "status",
                 "typ": {
                   "type": "U64"
+                }
+              },
+              {
+                "name": "body",
+                "typ": {
+                  "type": "Str"
                 }
               }
             ],
@@ -449,6 +457,7 @@
         },
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": null,
         "responseMappingInput": null,
         "responseMappingOutput": null,
@@ -469,6 +478,7 @@
         "corsPreflight": null,
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": "let productid: string = request.body.productid;\nlet result = golem:shoppingcart/api.{remove-item}(productid);\n{status: 200: u64, body: \"Product Removed\"}",
         "responseMappingInput": {
           "types": {
@@ -494,18 +504,18 @@
           }
         },
         "responseMappingOutput": {
-          "analysed_type": {
+          "analysedType": {
             "fields": [
-              {
-                "name": "body",
-                "typ": {
-                  "type": "Str"
-                }
-              },
               {
                 "name": "status",
                 "typ": {
                   "type": "U64"
+                }
+              },
+              {
+                "name": "body",
+                "typ": {
+                  "type": "Str"
                 }
               }
             ],
@@ -555,6 +565,7 @@
         },
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": null,
         "responseMappingInput": null,
         "responseMappingOutput": null,
@@ -575,6 +586,7 @@
         "corsPreflight": null,
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": "let productid: string = request.body.productid;\nlet quantity: u32 = request.body.quantity;\nlet result = golem:shoppingcart/api.{update-item-quantity}(productid, quantity);\n{status: 200: u64, body: \"Item Updated\"}",
         "responseMappingInput": {
           "types": {
@@ -606,18 +618,18 @@
           }
         },
         "responseMappingOutput": {
-          "analysed_type": {
+          "analysedType": {
             "fields": [
-              {
-                "name": "body",
-                "typ": {
-                  "type": "Str"
-                }
-              },
               {
                 "name": "status",
                 "typ": {
                   "type": "U64"
+                }
+              },
+              {
+                "name": "body",
+                "typ": {
+                  "type": "Str"
                 }
               }
             ],
@@ -667,6 +679,7 @@
         },
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": null,
         "responseMappingInput": null,
         "responseMappingOutput": null,

@@ -8,16 +8,8 @@ paths:
       responses:
         default:
           description: OK
-          content:
-            application/json:
-              schema:
-                type: object
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                type: object
       x-golem-api-gateway-binding:
         binding-type: swagger-ui
   /v0.0.2/{user}/add-2:
@@ -79,24 +71,11 @@ paths:
       responses:
         default:
           description: OK
-          content:
-            application/json:
-              schema:
-                type: object
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                type: object
       x-golem-api-gateway-binding:
         binding-type: cors-preflight
-        response: |-
-          {
-            Access-Control-Allow-Headers: "Content-Type, Authorization",
-            Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS",
-            Access-Control-Allow-Origin: "*"
-          }
+        response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
   /v0.0.2/{user}/add-3:
     post:
       parameters:
@@ -249,24 +228,11 @@ paths:
       responses:
         default:
           description: OK
-          content:
-            application/json:
-              schema:
-                type: object
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                type: object
       x-golem-api-gateway-binding:
         binding-type: cors-preflight
-        response: |-
-          {
-            Access-Control-Allow-Headers: "Content-Type, Authorization",
-            Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS",
-            Access-Control-Allow-Origin: "*"
-          }
+        response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
   /v0.0.2/{user}/delete-done-items-2:
     post:
       parameters:
@@ -308,24 +274,11 @@ paths:
       responses:
         default:
           description: OK
-          content:
-            application/json:
-              schema:
-                type: object
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                type: object
       x-golem-api-gateway-binding:
         binding-type: cors-preflight
-        response: |-
-          {
-            Access-Control-Allow-Headers: "Content-Type, Authorization",
-            Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS",
-            Access-Control-Allow-Origin: "*"
-          }
+        response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
   /v0.0.2/{user}/update-2:
     post:
       parameters:
@@ -385,24 +338,11 @@ paths:
       responses:
         default:
           description: OK
-          content:
-            application/json:
-              schema:
-                type: object
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                type: object
       x-golem-api-gateway-binding:
         binding-type: cors-preflight
-        response: |-
-          {
-            Access-Control-Allow-Headers: "Content-Type, Authorization",
-            Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS",
-            Access-Control-Allow-Origin: "*"
-          }
+        response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
   /v0.0.2/{user}/{id}/get-2:
     post:
       parameters:
@@ -422,13 +362,6 @@ paths:
           type: string
         explode: false
         style: simple
-      requestBody:
-        description: Request payload
-        content:
-          application/json:
-            schema:
-              type: object
-        required: true
       responses:
         default:
           description: Created
@@ -549,24 +482,11 @@ paths:
       responses:
         default:
           description: OK
-          content:
-            application/json:
-              schema:
-                type: object
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                type: object
       x-golem-api-gateway-binding:
         binding-type: cors-preflight
-        response: |-
-          {
-            Access-Control-Allow-Headers: "Content-Type, Authorization",
-            Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS",
-            Access-Control-Allow-Origin: "*"
-          }
+        response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
 components: {}
 x-golem-api-definition-id: todo-list
 x-golem-api-definition-version: 0.0.2

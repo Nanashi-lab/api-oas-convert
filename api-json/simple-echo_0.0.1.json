@@ -1,5 +1,5 @@
 {
-  "createdAt": "2025-04-04T06:55:02.451955011+00:00",
+  "createdAt": "2025-05-31T01:52:11.962482648+00:00",
   "draft": true,
   "id": "simple-echo",
   "routes": [
@@ -10,6 +10,7 @@
         "corsPreflight": null,
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": null,
         "responseMappingInput": null,
         "responseMappingOutput": null,
@@ -30,6 +31,7 @@
         "corsPreflight": null,
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": "let input: bool = request.body.input;\nlet result = golem:simpleecho/api.{echo-bool}(input);\n{status: 200: u64, body: result}",
         "responseMappingInput": {
           "types": {
@@ -55,18 +57,18 @@
           }
         },
         "responseMappingOutput": {
-          "analysed_type": {
+          "analysedType": {
             "fields": [
-              {
-                "name": "body",
-                "typ": {
-                  "type": "Bool"
-                }
-              },
               {
                 "name": "status",
                 "typ": {
                   "type": "U64"
+                }
+              },
+              {
+                "name": "body",
+                "typ": {
+                  "type": "Bool"
                 }
               }
             ],
@@ -116,6 +118,7 @@
         },
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": null,
         "responseMappingInput": null,
         "responseMappingOutput": null,
@@ -136,13 +139,20 @@
         "corsPreflight": null,
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": "let input = {name: \"testbot\", id: 30: u32, active: true};\nlet result = golem:simpleecho/api.{echo-record}(input);\n{status: 200: u64, body: result}",
         "responseMappingInput": {
           "types": {}
         },
         "responseMappingOutput": {
-          "analysed_type": {
+          "analysedType": {
             "fields": [
+              {
+                "name": "status",
+                "typ": {
+                  "type": "U64"
+                }
+              },
               {
                 "name": "body",
                 "typ": {
@@ -168,12 +178,6 @@
                   ],
                   "type": "Record"
                 }
-              },
-              {
-                "name": "status",
-                "typ": {
-                  "type": "U64"
-                }
               }
             ],
             "type": "Record"
@@ -222,6 +226,7 @@
         },
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": null,
         "responseMappingInput": null,
         "responseMappingOutput": null,
@@ -242,6 +247,7 @@
         "corsPreflight": null,
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": "let active: bool = request.body.active;\nlet name: string = request.body.name;\nlet id: u32 = request.body.id;\nlet input = {name: name, id: id, active: active};\nlet result = golem:simpleecho/api.{echo-record}(input);\n{status: 200: u64, body: result}",
         "responseMappingInput": {
           "types": {
@@ -279,8 +285,14 @@
           }
         },
         "responseMappingOutput": {
-          "analysed_type": {
+          "analysedType": {
             "fields": [
+              {
+                "name": "status",
+                "typ": {
+                  "type": "U64"
+                }
+              },
               {
                 "name": "body",
                 "typ": {
@@ -305,12 +317,6 @@
                     }
                   ],
                   "type": "Record"
-                }
-              },
-              {
-                "name": "status",
-                "typ": {
-                  "type": "U64"
                 }
               }
             ],
@@ -360,6 +366,7 @@
         },
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": null,
         "responseMappingInput": null,
         "responseMappingOutput": null,
@@ -380,6 +387,7 @@
         "corsPreflight": null,
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": "let input = request.body.input;\nlet result = golem:simpleecho/api.{echo-record}(input);\n{status: 200: u64, body: result}",
         "responseMappingInput": {
           "types": {
@@ -425,8 +433,14 @@
           }
         },
         "responseMappingOutput": {
-          "analysed_type": {
+          "analysedType": {
             "fields": [
+              {
+                "name": "status",
+                "typ": {
+                  "type": "U64"
+                }
+              },
               {
                 "name": "body",
                 "typ": {
@@ -452,12 +466,6 @@
                   ],
                   "type": "Record"
                 }
-              },
-              {
-                "name": "status",
-                "typ": {
-                  "type": "U64"
-                }
               }
             ],
             "type": "Record"
@@ -506,6 +514,7 @@
         },
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": null,
         "responseMappingInput": null,
         "responseMappingOutput": null,
@@ -526,6 +535,7 @@
         "corsPreflight": null,
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": "let input: s8 = request.body.input;\nlet result = golem:simpleecho/api.{echo-s8}(input);\n{status: 200: u64, body: result}",
         "responseMappingInput": {
           "types": {
@@ -551,18 +561,18 @@
           }
         },
         "responseMappingOutput": {
-          "analysed_type": {
+          "analysedType": {
             "fields": [
-              {
-                "name": "body",
-                "typ": {
-                  "type": "S8"
-                }
-              },
               {
                 "name": "status",
                 "typ": {
                   "type": "U64"
+                }
+              },
+              {
+                "name": "body",
+                "typ": {
+                  "type": "S8"
                 }
               }
             ],
@@ -612,6 +622,7 @@
         },
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": null,
         "responseMappingInput": null,
         "responseMappingOutput": null,
@@ -632,6 +643,7 @@
         "corsPreflight": null,
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": "let input: string = request.body.input;\nlet result = golem:simpleecho/api.{echo-string}(input);\n{status: 200: u64, body: result}",
         "responseMappingInput": {
           "types": {
@@ -657,18 +669,18 @@
           }
         },
         "responseMappingOutput": {
-          "analysed_type": {
+          "analysedType": {
             "fields": [
-              {
-                "name": "body",
-                "typ": {
-                  "type": "Str"
-                }
-              },
               {
                 "name": "status",
                 "typ": {
                   "type": "U64"
+                }
+              },
+              {
+                "name": "body",
+                "typ": {
+                  "type": "Str"
                 }
               }
             ],
@@ -718,6 +730,7 @@
         },
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": null,
         "responseMappingInput": null,
         "responseMappingOutput": null,
@@ -738,13 +751,20 @@
         "corsPreflight": null,
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": "let input = [\"barbarian\", \"bard\"];\nlet result = golem:simpleecho/api.{echo-string-list}(input);\n{status: 200: u64, body: result}",
         "responseMappingInput": {
           "types": {}
         },
         "responseMappingOutput": {
-          "analysed_type": {
+          "analysedType": {
             "fields": [
+              {
+                "name": "status",
+                "typ": {
+                  "type": "U64"
+                }
+              },
               {
                 "name": "body",
                 "typ": {
@@ -753,12 +773,6 @@
                   },
                   "type": "List"
                 }
-              },
-              {
-                "name": "status",
-                "typ": {
-                  "type": "U64"
-                }
               }
             ],
             "type": "Record"
@@ -807,6 +821,7 @@
         },
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": null,
         "responseMappingInput": null,
         "responseMappingOutput": null,
@@ -827,6 +842,7 @@
         "corsPreflight": null,
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": "let input = request.body.string;\nlet result = golem:simpleecho/api.{echo-string-list}(input);\n{status: 200: u64, body: result}",
         "responseMappingInput": {
           "types": {
@@ -855,8 +871,14 @@
           }
         },
         "responseMappingOutput": {
-          "analysed_type": {
+          "analysedType": {
             "fields": [
+              {
+                "name": "status",
+                "typ": {
+                  "type": "U64"
+                }
+              },
               {
                 "name": "body",
                 "typ": {
@@ -864,12 +886,6 @@
                     "type": "Str"
                   },
                   "type": "List"
-                }
-              },
-              {
-                "name": "status",
-                "typ": {
-                  "type": "U64"
                 }
               }
             ],
@@ -919,6 +935,7 @@
         },
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": null,
         "responseMappingInput": null,
         "responseMappingOutput": null,

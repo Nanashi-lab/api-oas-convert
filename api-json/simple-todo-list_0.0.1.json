@@ -1,5 +1,5 @@
 {
-  "createdAt": "2025-04-04T06:55:05.606377378+00:00",
+  "createdAt": "2025-05-31T01:52:23.418837158+00:00",
   "draft": true,
   "id": "simple-todo-list",
   "routes": [
@@ -10,6 +10,7 @@
         "corsPreflight": null,
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": null,
         "responseMappingInput": null,
         "responseMappingOutput": null,
@@ -30,6 +31,7 @@
         "corsPreflight": null,
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": "let input = request.body.input;\nlet result = golem:todolist/api.{add}(input);\n{status: 200: u64, body: result}",
         "responseMappingInput": {
           "types": {
@@ -83,8 +85,14 @@
           }
         },
         "responseMappingOutput": {
-          "analysed_type": {
+          "analysedType": {
             "fields": [
+              {
+                "name": "status",
+                "typ": {
+                  "type": "U64"
+                }
+              },
               {
                 "name": "body",
                 "typ": {
@@ -153,12 +161,6 @@
                   },
                   "type": "Result"
                 }
-              },
-              {
-                "name": "status",
-                "typ": {
-                  "type": "U64"
-                }
               }
             ],
             "type": "Record"
@@ -207,6 +209,7 @@
         },
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": null,
         "responseMappingInput": null,
         "responseMappingOutput": null,
@@ -224,6 +227,7 @@
         "corsPreflight": null,
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
+        "invocationContext": null,
         "response": null,
         "responseMappingInput": null,
         "responseMappingOutput": null,

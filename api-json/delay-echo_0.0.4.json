@@ -1,5 +1,5 @@
 {
-  "createdAt": "2025-05-31T01:51:49.081820735+00:00",
+  "createdAt": "2025-05-31T01:51:56.421931203+00:00",
   "draft": true,
   "id": "delay-echo",
   "routes": [
@@ -14,7 +14,7 @@
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
         "invocationContext": null,
-        "response": "let result = golem:delayecho/api.{echo-variant}(request.body.message);\n{status: 200: u64, body: result}",
+        "response": "let input = request.body.input;\nlet worker = instance(\"worker-static\");\nlet result = worker.echo(\"Test\", 3);\n{status: input: u64, body: result}",
         "responseMappingInput": {
           "types": {
             "request": {
@@ -24,9 +24,9 @@
                   "typ": {
                     "fields": [
                       {
-                        "name": "message",
+                        "name": "input",
                         "typ": {
-                          "type": "Str"
+                          "type": "U64"
                         }
                       }
                     ],
@@ -50,40 +50,24 @@
               {
                 "name": "body",
                 "typ": {
-                  "cases": [
-                    {
-                      "name": "rand1",
-                      "typ": {
-                        "type": "Str"
-                      }
-                    },
-                    {
-                      "name": "rand2",
-                      "typ": {
-                        "type": "Str"
-                      }
-                    },
-                    {
-                      "name": "rand3",
-                      "typ": {
-                        "type": "Str"
-                      }
-                    }
-                  ],
-                  "type": "Variant"
+                  "err": {
+                    "type": "Str"
+                  },
+                  "ok": {
+                    "type": "Str"
+                  },
+                  "type": "Result"
                 }
               }
             ],
             "type": "Record"
           }
         },
-        "workerName": "\"worker-static\"",
-        "workerNameInput": {
-          "types": {}
-        }
+        "workerName": null,
+        "workerNameInput": null
       },
       "method": "Post",
-      "path": "/v0.0.2/echo-variant",
+      "path": "/v0.0.4/echo-header",
       "security": null
     },
     {
@@ -108,7 +92,7 @@
         "workerNameInput": null
       },
       "method": "Options",
-      "path": "/v0.0.2/echo-variant",
+      "path": "/v0.0.4/echo-header",
       "security": null
     },
     {
@@ -122,7 +106,7 @@
         "idempotencyKey": null,
         "idempotencyKeyInput": null,
         "invocationContext": null,
-        "response": "let result = golem:delayecho/api.{echo-variant}(request.body.message);\nlet body = match result {  rand1(msg) => msg, rand2(msg) => msg, rand3(msg) => msg } ;\nlet status = match result {  rand1(_) => 200: u32, rand2(_) => 200: u32, rand3(_) => 400: u32 } ;\n{status: status, body: body}",
+        "response": "let input: string = request.body.input;\nlet worker = instance(\"worker-static\");\nlet result = worker.echo(\"Test\", 3);\n{headers: {Content-Type: input, userid: \"foo\"}, status: 200: u64, body: result}",
         "responseMappingInput": {
           "types": {
             "request": {
@@ -132,7 +116,7 @@
                   "typ": {
                     "fields": [
                       {
-                        "name": "message",
+                        "name": "input",
                         "typ": {
                           "type": "Str"
                         }
@@ -150,28 +134,52 @@
           "analysedType": {
             "fields": [
               {
+                "name": "headers",
+                "typ": {
+                  "fields": [
+                    {
+                      "name": "Content-Type",
+                      "typ": {
+                        "type": "Str"
+                      }
+                    },
+                    {
+                      "name": "userid",
+                      "typ": {
+                        "type": "Str"
+                      }
+                    }
+                  ],
+                  "type": "Record"
+                }
+              },
+              {
                 "name": "status",
                 "typ": {
-                  "type": "U32"
+                  "type": "U64"
                 }
               },
               {
                 "name": "body",
                 "typ": {
-                  "type": "Str"
+                  "err": {
+                    "type": "Str"
+                  },
+                  "ok": {
+                    "type": "Str"
+                  },
+                  "type": "Result"
                 }
               }
             ],
             "type": "Record"
           }
         },
-        "workerName": "\"worker-static\"",
-        "workerNameInput": {
-          "types": {}
-        }
+        "workerName": null,
+        "workerNameInput": null
       },
       "method": "Post",
-      "path": "/v0.0.2/echo-variant2",
+      "path": "/v0.0.4/echo-txt",
       "security": null
     },
     {
@@ -196,7 +204,7 @@
         "workerNameInput": null
       },
       "method": "Options",
-      "path": "/v0.0.2/echo-variant2",
+      "path": "/v0.0.4/echo-txt",
       "security": null
     },
     {
@@ -214,9 +222,9 @@
         "workerNameInput": null
       },
       "method": "Get",
-      "path": "/v0.0.2/swagger-delay-variant",
+      "path": "/v0.0.4/swagger-delay-variant",
       "security": null
     }
   ],
-  "version": "0.0.2"
+  "version": "0.0.4"
 }

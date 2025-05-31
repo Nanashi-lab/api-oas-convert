@@ -1,0 +1,241 @@
+openapi: 3.0.0
+info:
+  title: test-llm
+  version: 0.0.1
+paths:
+  /v0.0.1/swagger-llm:
+    get:
+      responses:
+        default:
+          description: OK
+        '200':
+          description: OK
+      x-golem-api-gateway-binding:
+        binding-type: swagger-ui
+  /v0.0.1/test1:
+    post:
+      responses:
+        default:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
+      x-golem-api-gateway-binding:
+        binding-type: default
+        component-name: test:llm
+        component-version: 0
+        response: |-
+          let worker = instance("openai");
+          let result = worker.test1();
+          {status: 200: u64, body: result}
+    options:
+      responses:
+        default:
+          description: OK
+        '200':
+          description: OK
+      x-golem-api-gateway-binding:
+        binding-type: cors-preflight
+        response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+  /v0.0.1/test2:
+    post:
+      responses:
+        default:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
+      x-golem-api-gateway-binding:
+        binding-type: default
+        component-name: test:llm
+        component-version: 0
+        response: |-
+          let worker = instance("openai");
+          let result = worker.test2();
+          {status: 200: u64, body: result}
+    options:
+      responses:
+        default:
+          description: OK
+        '200':
+          description: OK
+      x-golem-api-gateway-binding:
+        binding-type: cors-preflight
+        response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+  /v0.0.1/test3:
+    post:
+      responses:
+        default:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
+      x-golem-api-gateway-binding:
+        binding-type: default
+        component-name: test:llm
+        component-version: 0
+        response: |-
+          let worker = instance("openai");
+          let result = worker.test3();
+          {status: 200: u64, body: result}
+    options:
+      responses:
+        default:
+          description: OK
+        '200':
+          description: OK
+      x-golem-api-gateway-binding:
+        binding-type: cors-preflight
+        response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+  /v0.0.1/test4:
+    post:
+      responses:
+        default:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
+      x-golem-api-gateway-binding:
+        binding-type: default
+        component-name: test:llm
+        component-version: 0
+        response: |-
+          let worker = instance("openai");
+          let result = worker.test4();
+          {status: 200: u64, body: result}
+    options:
+      responses:
+        default:
+          description: OK
+        '200':
+          description: OK
+      x-golem-api-gateway-binding:
+        binding-type: cors-preflight
+        response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+  /v0.0.1/test5:
+    post:
+      responses:
+        default:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
+      x-golem-api-gateway-binding:
+        binding-type: default
+        component-name: test:llm
+        component-version: 0
+        response: |-
+          let worker = instance("openai");
+          let result = worker.test5();
+          {status: 200: u64, body: result}
+    options:
+      responses:
+        default:
+          description: OK
+        '200':
+          description: OK
+      x-golem-api-gateway-binding:
+        binding-type: cors-preflight
+        response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+  /v0.0.1/test6:
+    post:
+      responses:
+        default:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
+      x-golem-api-gateway-binding:
+        binding-type: default
+        component-name: test:llm
+        component-version: 0
+        response: |-
+          let worker = instance("openai");
+          let result = worker.test6();
+          {status: 200: u64, body: result}
+    options:
+      responses:
+        default:
+          description: OK
+        '200':
+          description: OK
+      x-golem-api-gateway-binding:
+        binding-type: cors-preflight
+        response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+  /v0.0.1/test7:
+    post:
+      responses:
+        default:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
+      x-golem-api-gateway-binding:
+        binding-type: default
+        component-name: test:llm
+        component-version: 0
+        response: |-
+          let worker = instance("openai");
+          let result = worker.test7();
+          {status: 200: u64, body: result}
+    options:
+      responses:
+        default:
+          description: OK
+        '200':
+          description: OK
+      x-golem-api-gateway-binding:
+        binding-type: cors-preflight
+        response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+components: {}
+x-golem-api-definition-id: test-llm
+x-golem-api-definition-version: 0.0.1
