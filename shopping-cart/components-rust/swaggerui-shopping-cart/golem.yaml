@@ -30,7 +30,7 @@ httpApi:
     local:
     - host: localhost:9006
       definitions:
-       - shopping-cart
+       - shopping-cart/0.0.1
        
 # Example for adding dependencies for Worker to Worker communication:
 # See https://learn.golem.cloud/docs/app-manifest#fields_dependencies for more information
