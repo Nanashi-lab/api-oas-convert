@@ -12,7 +12,7 @@ paths:
           description: OK
       x-golem-api-gateway-binding:
         binding-type: swagger-ui
-  /v0.0.1/{user}/add:
+  /v0.0.1/{user}/add-simple:
     post:
       parameters:
       - in: path

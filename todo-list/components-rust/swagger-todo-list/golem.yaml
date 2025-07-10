@@ -1,0 +1,276 @@
+# Schema for IDEA:
+# $schema: https://schema.golem.cloud/app/golem/1.2.4/golem.schema.json
+# Schema for vscode-yaml
+# yaml-language-server: $schema=https://schema.golem.cloud/app/golem/1.2.4/golem.schema.json
+
+# See https://learn.golem.cloud/docs/app-manifest#field-reference for field reference
+# For creating APIs see https://learn.golem.cloud/invoke/making-custom-apis
+
+components:
+  swagger:todo-list:
+    template: rust
+
+httpApi:
+  definitions:
+    todo-list1:
+      version: '0.0.3'
+      routes:
+        - method: GET
+          path: /v0.0.1/swagger-todo
+          binding:
+            type: swagger-ui
+        - method: POST
+          path: /v0.0.1/{user}/add
+          binding:
+            type: default
+            componentName: swagger:todo-list
+            response: |
+              let user: string = request.path.user;
+              let worker = instance("todo-${user}");
+              let input = request.body.input;
+              let result = worker.add(input);
+              {status: 200: u64, body: result}
+        - method: OPTIONS
+          path: /v0.0.1/{user}/add
+          binding:
+            type: cors-preflight
+            response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+        - method: POST
+          path: /v0.0.1/{user}/count
+          binding:
+            type: default
+            componentName: swagger:todo-list
+            response: |
+              let user: string = request.path.user;
+              let worker = instance("todo-${user}");
+              let result = worker.count();
+              {status: 200: u64, body: result}
+        - method: OPTIONS
+          path: /v0.0.1/{user}/count
+          binding:
+            type: cors-preflight
+            response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+        - method: POST
+          path: /v0.0.1/{user}/delete
+          binding:
+            type: default
+            componentName: swagger:todo-list
+            response: |
+              let user: string = request.path.user;
+              let worker = instance("todo-${user}");
+              let id = request.body.id;
+              let result = worker.delete(id);
+              {status: 200: u64, body: result}
+        - method: OPTIONS
+          path: /v0.0.1/{user}/delete
+          binding:
+            type: cors-preflight
+            response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+        - method: POST
+          path: /v0.0.1/{user}/delete-all
+          binding:
+            type: default
+            componentName: swagger:todo-list
+            response: |
+              let user: string = request.path.user;
+              let worker = instance("todo-${user}");
+              let result = worker.delete-all();
+              {status: 200: u64, headers: {Content-Type: "application/json"}}
+        - method: OPTIONS
+          path: /v0.0.1/{user}/delete-all
+          binding:
+            type: cors-preflight
+            response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+        - method: POST
+          path: /v0.0.1/{user}/delete-done-items
+          binding:
+            type: default
+            componentName: swagger:todo-list
+            response: |
+              let user: string = request.path.user;
+              let worker = instance("todo-${user}");
+              let result = worker.delete-done-items();
+              {body: "Success", status: 200: u64}
+        - method: OPTIONS
+          path: /v0.0.1/{user}/delete-done-items
+          binding:
+            type: cors-preflight
+            response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+        - method: POST
+          path: /v0.0.1/{user}/search
+          binding:
+            type: default
+            componentName: swagger:todo-list
+            response: |
+              let user: string = request.path.user;
+              let worker = instance("todo-${user}");
+              let input = request.body.input;
+              let result = worker.search(input);
+              {status: 200: u64, body: result}
+        - method: OPTIONS
+          path: /v0.0.1/{user}/search
+          binding:
+            type: cors-preflight
+            response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+        - method: POST
+          path: /v0.0.1/{user}/update
+          binding:
+            type: default
+            componentName: swagger:todo-list
+            response: |
+              let user: string = request.path.user;
+              let worker = instance("todo-${user}");
+              let input = request.body.input;
+              let id = request.body.id;
+              let result = worker.update(id, input);
+              {status: 200: u64, body: "Success Now"}
+        - method: OPTIONS
+          path: /v0.0.1/{user}/update
+          binding:
+            type: cors-preflight
+            response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+    todo-list2:  
+      version: '0.0.4'
+      routes:
+        - method: GET
+          path: /v0.0.2/swagger-todo
+          binding:
+            type: swagger-ui
+        - method: POST
+          path: /v0.0.2/{user}/add-2
+          binding:
+            type: default
+            componentName: swagger:todo-list
+            response: |
+              let user: string = request.path.user;
+              let worker = instance("todo-${user}");
+              let title: string = request.body.title;
+              let priority: string = request.body.priority;
+              let deadline: option<string> = request.body.deadline;
+              let result = worker.add({title: title, priority: high, deadline: none});
+              {status: 200: u64, body: "Success"}
+        - method: OPTIONS
+          path: /v0.0.2/{user}/add-2
+          binding:
+            type: cors-preflight
+            response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+        - method: POST
+          path: /v0.0.2/{user}/add-3
+          binding:
+            type: default
+            componentName: swagger:todo-list
+            response: |
+              let user: string = request.path.user;
+              let worker = instance("todo-${user}");
+              let title: string = request.body.title;
+              let priority: string = request.body.priority;
+              let deadline: option<string> = request.body.deadline;
+              let input = {title: title, priority: high, deadline: none};
+              let result = worker.add(input);
+              {status: 200: u64, body: result}
+        - method: OPTIONS
+          path: /v0.0.2/{user}/add-3
+          binding:
+            type: cors-preflight
+            response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+        - method: POST
+          path: /v0.0.2/{user}/delete-done-items-2
+          binding:
+            type: default
+            componentName: swagger:todo-list
+            response: |
+              let user: string = request.path.user;
+              let worker = instance("todo-${user}");
+              let result = worker.delete-done-items();
+              let status: u64 = 200;
+              let headers = {ContentType: "json", userid: "foo"};
+              let body = "foo";
+              {headers: headers, body: body, status: status}
+        - method: OPTIONS
+          path: /v0.0.2/{user}/delete-done-items-2
+          binding:
+            type: cors-preflight
+            response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+        - method: POST
+          path: /v0.0.2/{user}/update-2
+          binding:
+            type: default
+            componentName: swagger:todo-list
+            response: |
+              let user: string = request.path.user;
+              let worker = instance("todo-${user}");
+              let title: option<string> = request.body.title;
+              let deadline: option<string> = request.body.deadline;
+              let id: string = request.body.id;
+              let result = worker.update(id, {title: none, priority: none, deadline: none, status: none});
+              {status: 200: u64, body: "Success"}
+        - method: OPTIONS
+          path: /v0.0.2/{user}/update-2
+          binding:
+            type: cors-preflight
+            response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+        - method: POST
+          path: /v0.0.2/{user}/{id}/get-2
+          binding:
+            type: default
+            componentName: swagger:todo-list
+            response: |
+              let user: string = request.path.user;
+              let worker = instance("todo-${user}");
+              let id: string = request.path.id;
+              let result = worker.get(id);
+              {status: 200: u64, body: result}
+        - method: OPTIONS
+          path: /v0.0.2/{user}/{id}/get-2
+          binding:
+            type: cors-preflight
+            response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+    simple-todo-list:
+      version: '0.0.2'
+      routes:
+        - method: GET
+          path: /v0.0.1/swagger-simple
+          binding:
+            type: swagger-ui
+        - method: POST
+          path: /v0.0.1/{user}/add-simple
+          binding:
+            type: default
+            componentName: swagger:todo-list
+            response: |
+              let user: string = request.path.user;
+              let worker = instance("todo-${user}");
+              let input = request.body.input;
+              let result = worker.add(input);
+              {status: 200: u64, body: result}
+        - method: OPTIONS
+          path: /v0.0.1/{user}/add-simple
+          binding:
+            type: cors-preflight
+            response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+        - method: GET
+          path: /v0.0.1/{user}/swagger
+          binding:
+            type: swagger-ui
+        - method: OPTIONS
+          path: /v0.0.1/{user}/swagger
+          binding:
+            type: cors-preflight
+            response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+
+  deployments:
+    local:
+    - host: localhost:9006
+      definitions:
+       - todo-list1
+       - todo-list2
+       - simple-todo-list
+
+
+# Example for adding dependencies for Worker to Worker communication:
+# See https://learn.golem.cloud/docs/app-manifest#fields_dependencies for more information
+#
+#dependencies:
+#  swagger:todo-list:
+#  - target: <target component name to be called>
+#    type: wasm-rpc

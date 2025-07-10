@@ -15,22 +15,110 @@ httpApi:
     shopping-cart:
       version: '0.0.1'
       routes:
+        - method: GET
+          path: /v0.0.1/swagger-shopping-cart
+          binding:
+            type: swagger-ui
         - method: POST
-          path: /v1/{user}/add-to-cart
+          path: /v0.0.1/{user}/add-item
           binding:
             type: default
-            componentName: "swaggerui:shopping-cart"
+            componentName: swaggerui:shopping-cart
             response: |
-              let user: u32 = request.path.user;
+              let user: string = request.path.user;
               let worker = instance("cart-${user}");
               worker.add-item(request.body);
-              "successfully added item to cart"
+              {status: 200: u64, body: "Item added"}
+        - method: OPTIONS
+          path: /v0.0.1/{user}/add-item
+          binding:
+            type: cors-preflight
+            response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+        - method: POST
+          path: /v0.0.1/{user}/checkout
+          binding:
+            type: default
+            componentName: swaggerui:shopping-cart
+            response: |
+              let user: string = request.path.user;
+              let worker = instance("cart-${user}");
+              let result = worker.checkout();
+              let body = match result { success(reply) => reply.order-id, error(message) => message };
+              {status: 200: u64, body: body}
+        - method: OPTIONS
+          path: /v0.0.1/{user}/checkout
+          binding:
+            type: cors-preflight
+            response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+        - method: POST
+          path: /v0.0.1/{user}/get-cart-contents
+          binding:
+            type: default
+            componentName: swaggerui:shopping-cart
+            response: |
+              let user: string = request.path.user;
+              let worker = instance("cart-${user}");
+              let result = worker.get-cart-contents();
+              {status: 200: u64, body: result}
+        - method: OPTIONS
+          path: /v0.0.1/{user}/get-cart-contents
+          binding:
+            type: cors-preflight
+            response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+        - method: POST
+          path: /v0.0.1/{user}/initialize-cart
+          binding:
+            type: default
+            componentName: swaggerui:shopping-cart
+            response: |
+              let user: string = request.path.user;
+              let worker = instance("cart-${user}");
+              let result = worker.initialize-cart(user);
+              {status: 200: u64, body: "User added"}
+        - method: OPTIONS
+          path: /v0.0.1/{user}/initialize-cart
+          binding:
+            type: cors-preflight
+            response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+        - method: POST
+          path: /v0.0.1/{user}/remove-item
+          binding:
+            type: default
+            componentName: swaggerui:shopping-cart
+            response: |
+              let user: string = request.path.user;
+              let worker = instance("cart-${user}");
+              let productid: string = request.body.productid;
+              let result = worker.remove-item(productid);
+              {status: 200: u64, body: "Product Removed"}
+        - method: OPTIONS
+          path: /v0.0.1/{user}/remove-item
+          binding:
+            type: cors-preflight
+            response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
+        - method: POST
+          path: /v0.0.1/{user}/update-item-quantity
+          binding:
+            type: default
+            componentName: swaggerui:shopping-cart
+            response: |
+              let user: string = request.path.user;
+              let worker = instance("cart-${user}");
+              let productid: string = request.body.productid;
+              let quantity: u32 = request.body.quantity;
+              let result = worker.update-item-quantity(productid, quantity);
+              {status: 200: u64, body: "Item Updated"}
+        - method: OPTIONS
+          path: /v0.0.1/{user}/update-item-quantity
+          binding:
+            type: cors-preflight
+            response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
  
   deployments:
     local:
     - host: localhost:9006
       definitions:
-       - shopping-cart/0.0.1
+       - shopping-cart
        
 # Example for adding dependencies for Worker to Worker communication:
 # See https://learn.golem.cloud/docs/app-manifest#fields_dependencies for more information
