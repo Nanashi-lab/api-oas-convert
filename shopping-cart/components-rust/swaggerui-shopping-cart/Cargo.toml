@@ -1,0 +1,24 @@
+[package]
+name = "swaggerui_shopping_cart"
+version = "0.0.1"
+edition = "2021"
+
+[package.metadata]
+
+[package.metadata.component]
+
+[package.metadata.component.target]
+path = "wit-generated"
+
+[package.metadata.component.target.dependencies]
+"swaggerui:shopping-cart-exports" = { path = "wit-generated/deps/swaggerui_shopping-cart-exports" }
+
+[lib]
+path = "src/lib.rs"
+crate-type = ["cdylib"]
+required-features = []
+
+[dependencies]
+once_cell = "1.21.1"
+rand = "0.9.0"
+wit-bindgen-rt = { workspace = true }

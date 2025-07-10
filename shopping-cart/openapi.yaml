@@ -1,0 +1,70 @@
+components: {}
+info:
+  title: shopping-cart
+  version: 0.0.1
+openapi: 3.0.0
+paths:
+  /v1/{user}/add-to-cart:
+    post:
+      parameters:
+      - description: 'Path parameter: user'
+        explode: false
+        in: path
+        name: user
+        required: true
+        schema:
+          format: int32
+          minimum: 0
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                price:
+                  format: float
+                  type: number
+                product-id:
+                  type: string
+                quantity:
+                  format: int32
+                  minimum: 0
+                  type: integer
+              required:
+              - product-id
+              - name
+              - price
+              - quantity
+              type: object
+        description: Request payload
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                type: string
+          description: Created
+        default:
+          content:
+            application/json:
+              schema:
+                type: string
+          description: Created
+      x-golem-api-gateway-binding:
+        binding-type: default
+        component-name: swaggerui:shopping-cart
+        component-version: 0
+        response: |-
+          let user: u32 = request.path.user;
+          let worker = instance("cart-${user}");
+          worker.add-item(request.body);
+          "successfully added item to cart"
+servers:
+- description: Deployed instance
+  url: http://localhost:9006
+x-golem-api-definition-id: shopping-cart
+x-golem-api-definition-version: 0.0.1
