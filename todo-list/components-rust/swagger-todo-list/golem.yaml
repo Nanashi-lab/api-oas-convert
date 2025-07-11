@@ -13,7 +13,7 @@ components:
 httpApi:
   definitions:
     todo-list1:
-      version: '0.0.3'
+      version: '0.0.1'
       routes:
         - method: GET
           path: /v0.0.1/swagger-todo
@@ -130,7 +130,7 @@ httpApi:
             type: cors-preflight
             response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
     todo-list2:  
-      version: '0.0.4'
+      version: '0.0.2'
       routes:
         - method: GET
           path: /v0.0.2/swagger-todo
@@ -226,7 +226,7 @@ httpApi:
             type: cors-preflight
             response: '{access-control-allow-origin: "*", access-control-allow-methods: "GET, POST, PUT, DELETE, OPTIONS", access-control-allow-headers: "Content-Type, Authorization"}'
     simple-todo-list:
-      version: '0.0.2'
+      version: '0.0.1'
       routes:
         - method: GET
           path: /v0.0.1/swagger-simple

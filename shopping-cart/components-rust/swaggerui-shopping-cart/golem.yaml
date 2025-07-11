@@ -28,7 +28,7 @@ httpApi:
               let user: string = request.path.user;
               let worker = instance("cart-${user}");
               worker.add-item(request.body);
-              {status: 200: u64, body: "Item added"}
+              {status: 200: u64, body: "Item added test"}
         - method: OPTIONS
           path: /v0.0.1/{user}/add-item
           binding:
