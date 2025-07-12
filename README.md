@@ -1,5 +1,29 @@
 # Test component for Swagger UI binding in Golem
 
+## Getting Started
+
+This project demonstrates using Swagger UI bindings in Golem with a single binary approach.
+
+### Prerequisites
+- Download the `golem` binary from the [`openapi` branch of golem-cli](https://github.com/Nanashi-lab/golem-cli/tree/openapi).
+
+### Setup & Usage
+
+1. **Start the Golem server:**
+   ```sh
+   golem server run
+   ```
+
+2. **Deploy the applications:**
+   - Navigate to each app folder (e.g., `shopping-cart/`, `todo-list/`)
+   - Run:
+     ```sh
+     golem app deploy
+     ```
+
+3. **Access Swagger UI:**
+   - After deployment, you can access the Swagger UI for each app at the endpoints listed below.
+
 ## Shopping Cart
 
 **API:**
