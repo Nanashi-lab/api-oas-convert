@@ -40,6 +40,16 @@ This project demonstrates using Swagger UI bindings in Golem with a single binar
 - `simple-todo-list/0.0.1`
   - [localhost:9006/v0.0.1/swagger-simple](http://localhost:9006/v0.0.1/swagger-simple)
 
+## LLM
+
+**APIs:**
+- `llm/0.0.1`
+  - [localhost:9006/v0.0.1/swagger-llm](http://localhost:9006/v0.0.1/swagger-llm)
+
+#Setup for LLM
+  1. LLM test component is from golem-llm, LLM expects the wasm files to be under folder components/debug or components/release
+  2. You would have to pre-create the worker with the environmental variable, with worker name being **test-llm**
+
  
 
 
